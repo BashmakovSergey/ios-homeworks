@@ -7,7 +7,7 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .lightGray
+        self.view.backgroundColor = .darkGray
         navigationItem.title = titlePost
         let barButtonItem = UIBarButtonItem(title: "Инфо", style: .plain, target: self, action: #selector(infoViewController))
         
