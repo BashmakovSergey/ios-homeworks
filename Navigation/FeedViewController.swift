@@ -20,7 +20,11 @@ class FeedViewController: UIViewController {
             super.viewDidLoad()
             view.backgroundColor = .systemPink
             view.addSubview(self.actionButton)
-        
+            setupContraints()
+            actionButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+    }
+    
+    private func setupContraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             actionButton.leadingAnchor.constraint(
@@ -34,15 +38,10 @@ class FeedViewController: UIViewController {
             actionButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             actionButton.heightAnchor.constraint(equalToConstant: 44.0)
         ])
-        
-        actionButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
     }
-    
     
     @objc private func buttonPressed(_ sender: UIButton) {
             let postViewController = PostViewController()
-           // postViewController.titlePost = post.title
-        
             navigationController?.pushViewController(postViewController, animated: true)
         }
 

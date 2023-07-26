@@ -16,7 +16,12 @@ class InfoViewController: UIViewController {
         title = "Инфо"
         view.backgroundColor = .systemMint
         view.addSubview(actionButton)
-
+        setupContraints()
+        actionButton.addTarget(self, action: #selector(alertViewController(_:)), for: .touchUpInside)
+        
+    }
+    
+    private func setupContraints(){
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             actionButton.leadingAnchor.constraint(
@@ -32,10 +37,8 @@ class InfoViewController: UIViewController {
                 ),
             actionButton.heightAnchor.constraint(equalToConstant: 44.0)
         ])
-
-        actionButton.addTarget(self, action: #selector(alertViewController(_:)), for: .touchUpInside)
-        
     }
+    
     @objc func alertViewController(_ sender: UIAlertController) {
         let alertController = UIAlertController(title: "Информация первая", message: "Информация вторая, сообщение", preferredStyle: .alert)
 
