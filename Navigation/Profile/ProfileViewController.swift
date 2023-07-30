@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(self.profileHeaderView)
         view.addSubview(profileButton)
         setupConstraint()
+        self.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
     }
     
    // override func viewWillLayoutSubviews() {
