@@ -15,12 +15,12 @@ struct Post {
 
 let postExamples: [Post] = [
     Post(author: "Иван Пеньков",
-         description: "Мы спасали родные края, зжигая все на своем пути",
+         description: "Мы спасали родные края, сжигая все на своем пути",
          image: "post1",
          likes: 20,
          views: 22),
     Post(author: "Петр Поворито",
-         description: "Я знаю как правильно лечться огурцами",
+         description: "Я знаю как правильно лечиться огурцами",
          image: "post2",
          likes: 10,
          views: 22),

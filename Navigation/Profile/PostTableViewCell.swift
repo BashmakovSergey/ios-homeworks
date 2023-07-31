@@ -15,7 +15,7 @@ class `PostTableViewCell`: UITableViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = .black
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleAspectFit
         return image
     }()
 
@@ -36,7 +36,6 @@ class `PostTableViewCell`: UITableViewCell {
         return label
     }()
 
-
     var postViews: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,8 +43,6 @@ class `PostTableViewCell`: UITableViewCell {
         label.textColor = .black
         return label
     }()
-
-    // MARK: - Init section
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -81,6 +78,13 @@ class `PostTableViewCell`: UITableViewCell {
             postViews.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
     }
-     
+
+    func update(model: Post) {
+        postAuthor.text = model.author
+        postDescription.text = model.description
+        postImage.image = UIImage(named: model.image)
+        postLikes.text = "Лайк: \(model.likes)"
+        postViews.text = "Просмотров: \(model.views)"
+    }
 }
 

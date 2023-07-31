@@ -1,6 +1,6 @@
 import UIKit
 
-class LogInViewController: UIViewController, UITextFieldDelegate {
+class LogInViewController: UIViewController {
 
     private var vkLogo: UIImageView = {
         let imageView = UIImageView()
@@ -163,9 +163,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         loginScrollView.contentOffset = CGPoint(x: 0, y: 0)
     }
     
+}
+
+extension LogInViewController: UITextFieldDelegate {
+    
+    // tap 'done' on the keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 }
-
