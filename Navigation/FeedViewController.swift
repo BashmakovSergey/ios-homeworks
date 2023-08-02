@@ -2,7 +2,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
-    var post = Post(title: "Мой пост")
+    var post = PostFeed(title: "Мой пост")
     
     @objc private lazy var actionButton: UIButton = {
             let button = UIButton()
@@ -15,30 +15,52 @@ class FeedViewController: UIViewController {
             return button
     }()
     
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.clipsToBounds = true
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+            
+        addPostButton(title: "Первый пост", color: .systemPurple, to: stackView, selector: #selector(buttonPressed))
+        addPostButton(title: "Второй пост", color: .systemIndigo, to: stackView, selector: #selector(buttonPressed))
+        
+        return stackView
+    }()
+    
     
     override func viewDidLoad() {
-            super.viewDidLoad()
-            view.backgroundColor = .systemPink
-            view.addSubview(self.actionButton)
-            setupContraints()
-            actionButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        super.viewDidLoad()
+        view.backgroundColor = .systemPink
+        view.addSubview(stackView)
+        setupContraints()
     }
     
     private func setupContraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            actionButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor,constant: 20.0),
-            actionButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor,constant: -20.0),
-            actionButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-            actionButton.heightAnchor.constraint(equalToConstant: 44.0)
+            stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            stackView.heightAnchor.constraint(equalToConstant: 200),
+            stackView.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, constant: -32)
         ])
     }
     
+    private func addPostButton(title: String, color: UIColor, to view: UIStackView, selector: Selector) {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(title, for: .normal)
+        button.backgroundColor = color
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 12.0
+        button.addTarget(self, action: selector, for: .touchUpInside)
+        view.addArrangedSubview(button)
+    }
+    
     @objc private func buttonPressed(_ sender: UIButton) {
-            let postViewController = PostViewController()
+        let postViewController = PostViewController(post: post)
             navigationController?.pushViewController(postViewController, animated: true)
         }
 
 }
-
-

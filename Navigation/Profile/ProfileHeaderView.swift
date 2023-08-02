@@ -1,8 +1,8 @@
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
     
-    private var statusText: String = ""
+    private var statusText: String = "Установить статус"
     
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "avatar.jpeg"))
@@ -33,10 +33,8 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    //доработка из дз 2.1 в 2.2
     private var statusTextField: UITextField = {
         var textField = UITextField()
-        textField.text = "  Новый статус"
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 12.0
         textField.layer.borderWidth = 1.0
@@ -44,22 +42,19 @@ class ProfileHeaderView: UIView {
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "  введите новый статус здесь"
-        
+        textField.placeholder = "Установить новый статус"
+        textField.textAlignment = .center
         textField.keyboardType = UIKeyboardType.default
         textField.returnKeyType = UIReturnKeyType.done
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.clearButtonMode = UITextField.ViewMode.whileEditing;
         textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        
-       // textField.addTarget(ProfileHeaderView.self, action: #selector(statusTextChanged), for: .editingChanged)
-        
         return textField
     }()
     
     private let setStatusButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Показать статус", for: .normal)
+        button.setTitle("Установить статус", for: .normal)
         button.backgroundColor = .systemBlue
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 4.0
@@ -70,10 +65,11 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setupUI()
         addTarget()
+        statusTextField.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -82,17 +78,18 @@ class ProfileHeaderView: UIView {
 
     private func addTarget() {
         setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
     }
     
     @objc private func buttonPressed() {
         if let buttonText = setStatusButton.currentTitle {
             print(buttonText)
         }
+        statusLabel.text = statusText
     }
     
-    //dz 2.1 to 2.2
     @objc func statusTextChanged(_ textField: UITextField) {
-        //statusText = textField.text!
+        statusText = textField.text ?? ""
     }
     
     private func setupUI() {
@@ -128,8 +125,15 @@ class ProfileHeaderView: UIView {
             statusTextField.rightAnchor.constraint(equalTo: safeAreaGuide.rightAnchor, constant: -16),
             statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
         ])
-        
-        
     }
+   
+}
+
+extension ProfileHeaderView: UITextFieldDelegate {
     
+    // tap 'done' on the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
