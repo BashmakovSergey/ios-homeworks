@@ -1,6 +1,6 @@
 import UIKit
 
-class `PostTableViewCell`: UITableViewCell {
+class PostTableViewCell: UITableViewCell {
     
     var postAuthor: UILabel = {
         let label = UILabel()

@@ -66,6 +66,7 @@ class LogInViewController: UIViewController {
         login.font = UIFont.systemFont(ofSize: 16)
         login.autocapitalizationType = .none
         login.returnKeyType = .done
+        login.isSecureTextEntry = true
         return login
     }()
     
@@ -82,6 +83,7 @@ class LogInViewController: UIViewController {
         password.font = UIFont.systemFont(ofSize: 16)
         password.autocapitalizationType = .none
         password.returnKeyType = .done
+        password.isSecureTextEntry = true
         return password
     }()
     
@@ -89,13 +91,9 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.isHidden = true
-        view.addSubview(loginScrollView)
-        loginScrollView.addSubview(contentView)
-        contentView.addSubviews(vkLogo, loginStackView, loginButton)
-        loginStackView.addArrangedSubview(loginField)
-        loginStackView.addArrangedSubview(passwordField)
         loginField.delegate = self
         passwordField.delegate = self
+        setupUI()
         setupConstraints()
     }
     
@@ -113,6 +111,14 @@ class LogInViewController: UIViewController {
         nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
 
+    }
+    
+    private func setupUI(){
+        view.addSubview(loginScrollView)
+        loginScrollView.addSubview(contentView)
+        contentView.addSubviews(vkLogo, loginStackView, loginButton)
+        loginStackView.addArrangedSubview(loginField)
+        loginStackView.addArrangedSubview(passwordField)
     }
     
     private func setupConstraints() {

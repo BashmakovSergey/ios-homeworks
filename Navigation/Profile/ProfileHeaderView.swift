@@ -5,7 +5,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     private var statusText: String = "Установить статус"
     
     private let avatarImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "avatar.jpeg"))
+        let imageView = UIImageView(image: UIImage(named: "avatar"))
         imageView.backgroundColor = .green
         imageView.layer.borderWidth = 3.0
         imageView.layer.borderColor = UIColor.white.cgColor
