@@ -2,6 +2,8 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
+    private var viewCounter = 0
+    
     var postAuthor: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +86,13 @@ class PostTableViewCell: UITableViewCell {
         postDescription.text = model.description
         postImage.image = UIImage(named: model.image)
         postLikes.text = "Лайк: \(model.likes)"
+        viewCounter = model.views
         postViews.text = "Просмотров: \(model.views)"
+    }
+    
+    func incrementPostViewsCounter() {
+        viewCounter += 1
+        postViews.text = "Просмотров: \(viewCounter)"
     }
 }
 
