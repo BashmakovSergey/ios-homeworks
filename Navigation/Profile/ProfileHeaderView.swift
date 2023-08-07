@@ -4,8 +4,12 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private var statusText: String = "Установить статус"
     
+    var returnAvatarButton = UIButton()
+    var avatarBackground = UIView()
+    private var avatarOriginPoint = CGPoint()
+    
     private let avatarImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "avatar.jpeg"))
+        let imageView = UIImageView(image: UIImage(named: "avatar"))
         imageView.backgroundColor = .green
         imageView.layer.borderWidth = 3.0
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -68,6 +72,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupUI()
+        setupConstrain()
         addTarget()
         statusTextField.delegate = self
     }
@@ -98,7 +103,34 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         addSubview(setStatusButton)
         addSubview(statusLabel)
         addSubview(statusTextField)
+        addSubviews(avatarBackground, avatarImageView, returnAvatarButton)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnAvatar))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        avatarImageView.isUserInteractionEnabled = true
+        avatarImageView.addGestureRecognizer(tapGesture)
+        
+        // cancel an animation mode
+        returnAvatarButton.translatesAutoresizingMaskIntoConstraints = false
+        returnAvatarButton.alpha = 0
+        returnAvatarButton.backgroundColor = .clear
+        returnAvatarButton.contentMode = .scaleToFill
+        returnAvatarButton.setImage(UIImage(systemName: "xmark", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22))?.withTintColor(.black, renderingMode: .automatic), for: .normal)
+        returnAvatarButton.tintColor = .black
+        returnAvatarButton.addTarget(self, action: #selector(returnAvatarToOrigin), for: .touchUpInside)
+        
+        // translucent background for the modal animation mode
+        avatarBackground = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        avatarBackground.backgroundColor = .darkGray
+        avatarBackground.isHidden = true
+        avatarBackground.alpha = 0
+        
+        
+        
+    }
+    
+    private func setupConstrain(){
         let safeAreaGuide = self.safeAreaLayoutGuide
         
         fullNameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 50).isActive = true
@@ -124,7 +156,50 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             statusTextField.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 50),
             statusTextField.rightAnchor.constraint(equalTo: safeAreaGuide.rightAnchor, constant: -16),
             statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
+            
+            returnAvatarButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            returnAvatarButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
         ])
+    }
+    
+    @objc private func didTapOnAvatar() {
+        // create an animation
+        avatarImageView.isUserInteractionEnabled = false
+        
+        ProfileViewController.postTableView.isScrollEnabled = false
+        ProfileViewController.postTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isUserInteractionEnabled = false
+        
+        avatarOriginPoint = avatarImageView.center
+        let scale = UIScreen.main.bounds.width / avatarImageView.bounds.width
+        
+        UIView.animate(withDuration: 0.5) {
+            self.avatarImageView.center = CGPoint(x: UIScreen.main.bounds.midX,
+                                                  y: UIScreen.main.bounds.midY - self.avatarOriginPoint.y)
+            self.avatarImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+            self.avatarImageView.layer.cornerRadius = 0
+            self.avatarBackground.isHidden = false
+            self.avatarBackground.alpha = 0.7
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.returnAvatarButton.alpha = 1
+            }
+        }
+    }
+    
+    @objc private func returnAvatarToOrigin() {
+        UIImageView.animate(withDuration: 0.5) {
+            UIImageView.animate(withDuration: 0.5) {
+                self.returnAvatarButton.alpha = 0
+                self.avatarImageView.center = self.avatarOriginPoint
+                self.avatarImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.width / 2
+                self.avatarBackground.alpha = 0
+            }
+        } completion: { _ in
+            ProfileViewController.postTableView.isScrollEnabled = true
+            ProfileViewController.postTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.isUserInteractionEnabled = true
+            self.avatarImageView.isUserInteractionEnabled = true
+        }
     }
    
 }
