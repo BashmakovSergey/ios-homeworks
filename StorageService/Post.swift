@@ -1,19 +1,31 @@
 import Foundation
 
-struct PostFeed {
+public struct PostFeed {
     //title only for old homework with PostViewController
-    var title: String
+    public var title: String
+    
+    public init(title: String) {
+        self.title = title
+    }
 }
 
-struct Post {
-    let author: String
-    let description: String
-    let image: String
-    let likes: Int
-    let views: Int
+public struct Post {
+    public var author: String
+    public var description: String
+    public var image: String
+    public var likes: Int
+    public var views: Int
+    
+    public init(author: String, description: String, image: String, likes: Int, views: Int) {
+        self.author = author
+        self.description = description
+        self.image = image
+        self.likes = likes
+        self.views = views
+    }
 }
 
-let postExamples: [Post] = [
+public let postExamples: [Post] = [
     Post(author: "Иван Пеньков",
          description: "Мы спасали родные края, сжигая все на своем пути",
          image: "post1",

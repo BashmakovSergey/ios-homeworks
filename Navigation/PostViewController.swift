@@ -1,4 +1,5 @@
 import UIKit
+import StorageService
 
 class PostViewController: UIViewController {
     
@@ -15,6 +16,10 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    func setupUI(){
         self.view.backgroundColor = .darkGray
         navigationItem.title = post.title
         let barButtonItem = UIBarButtonItem(title: "Инфо", style: .plain, target: self, action: #selector(infoViewController))

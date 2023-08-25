@@ -1,4 +1,5 @@
 import UIKit
+import StorageService
 
 class PostTableViewCell: UITableViewCell {
     
@@ -12,7 +13,7 @@ class PostTableViewCell: UITableViewCell {
         label.numberOfLines = 2
         return label
     }()
-
+    
     var postImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +21,7 @@ class PostTableViewCell: UITableViewCell {
         image.contentMode = .scaleAspectFit
         return image
     }()
-
+    
     var postDescription: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +30,7 @@ class PostTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-
+    
     var postLikes: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +38,7 @@ class PostTableViewCell: UITableViewCell {
         label.textColor = .black
         return label
     }()
-
+    
     var postViews: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +53,7 @@ class PostTableViewCell: UITableViewCell {
         setupConstraints()
         self.selectionStyle = .default
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("Ups")
     }
