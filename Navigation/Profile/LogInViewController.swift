@@ -154,8 +154,35 @@ class LogInViewController: UIViewController {
     }
 
     @objc private func touchLoginButton() {
-        let profileViewController = ProfileViewController()
-        navigationController?.setViewControllers([profileViewController], animated: true)
+        let typedLogin = loginField.text ?? ""
+        
+        #if DEBUG
+            let userService = TestUserService()
+            if userService.authorization(userLogin: typedLogin) == nil {
+    
+                let alertController = UIAlertController(title: "Тестовое предупреждение", message: "Неправильно введен логин, введите test ", preferredStyle: .alert)
+                let actionAlert = UIAlertAction(title: "ОК", style: .default, handler: nil)
+                alertController.addAction(actionAlert)
+                self.present(alertController, animated: true)
+    
+            } else {
+                let profileViewController = ProfileViewController(userService: userService.authorization(userLogin: typedLogin))
+                navigationController?.pushViewController(profileViewController, animated: true)
+            }
+        #else
+            let userService = CurrentUserService()
+                if userService.authorization(userLogin: typedLogin) == nil {
+            
+                    let alertController = UIAlertController(title: "Предупреждение", message: "Неправильно введен логин", preferredStyle: .alert)
+                    let actionAlert = UIAlertAction(title: "ОК", style: .default, handler: nil)
+                    alertController.addAction(actionAlert)
+                    self.present(alertController, animated: true)
+            
+                } else {
+                    let profileViewController = ProfileViewController(userService: userService.authorization(userLogin: typedLogin))
+                    navigationController?.pushViewController(profileViewController, animated: true)
+        }
+        #endif
     }
 
     @objc private func keyboardShow(notification: NSNotification) {

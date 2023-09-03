@@ -7,6 +7,9 @@ class ProfileViewController: UIViewController {
     static let postIdent = "post"
     static let photoIdent = "photo"
     
+    private var currentUser: User?
+  //  private var userService: UserService
+    
     static var postTableView: UITableView = {
         let tableView = UITableView.init(frame: .zero,style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -15,6 +18,15 @@ class ProfileViewController: UIViewController {
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: ProfileViewController.postIdent)
         return tableView
     }()
+    
+    init(userService: User?) {
+        self.currentUser = userService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +92,10 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else { return nil }
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Self.headerIdent) as! ProfileHeaderView
+        let user = currentUser
+        headerView.avatarImageView.image = user?.userAvatar
+        headerView.fullNameLabel.text = user?.userFullName
+        headerView.statusLabel.text = user?.userStatus
         return headerView
     }
 
