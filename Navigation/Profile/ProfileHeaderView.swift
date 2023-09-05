@@ -8,7 +8,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     var avatarBackground = UIView()
     private var avatarOriginPoint = CGPoint()
     
-    private let avatarImageView: UIImageView = {
+    let avatarImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "avatar"))
         imageView.backgroundColor = .green
         imageView.layer.borderWidth = 3.0
@@ -19,7 +19,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return imageView
     }()
     
-    private let fullNameLabel: UILabel = {
+    let fullNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Имя профиля"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -28,7 +28,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
-    private let statusLabel: UILabel = {
+     let statusLabel: UILabel = {
         let label = UILabel()
         label.text = "В ожидании чего-то"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
