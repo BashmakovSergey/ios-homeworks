@@ -1,7 +1,7 @@
 import UIKit
 import StorageService
 
-class PostTableViewCell: UITableViewCell {
+final class PostTableViewCell: UITableViewCell {
     
     private var viewCounter = 0
     

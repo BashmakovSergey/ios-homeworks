@@ -1,7 +1,7 @@
 import UIKit
 import StorageService
 
-class FeedViewController: UIViewController {
+final class FeedViewController: UIViewController {
 
     var post = PostFeed(title: "Мой пост")
     

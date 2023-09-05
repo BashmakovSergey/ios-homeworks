@@ -1,6 +1,6 @@
 import UIKit
 
-class ProfileHeaderView: UITableViewHeaderFooterView {
+final class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private var statusText: String = "Установить статус"
     
