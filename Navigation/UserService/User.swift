@@ -1,6 +1,6 @@
 import UIKit
 
-public class User {
+final public class User {
     var userLogin: String
     var userFullName: String
     var userAvatar: UIImage

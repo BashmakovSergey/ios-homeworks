@@ -1,14 +1,13 @@
 import UIKit
 import StorageService
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
     static let headerIdent = "header"
     static let postIdent = "post"
     static let photoIdent = "photo"
     
     private var currentUser: User?
-  //  private var userService: UserService
     
     static var postTableView: UITableView = {
         let tableView = UITableView.init(frame: .zero,style: .grouped)

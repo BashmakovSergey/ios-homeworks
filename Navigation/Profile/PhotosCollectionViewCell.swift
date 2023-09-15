@@ -1,6 +1,6 @@
 import UIKit
 
-class PhotosCollectionViewCell: UICollectionViewCell {
+final class PhotosCollectionViewCell: UICollectionViewCell {
     
     var photo: UIImageView = {
         let photos = UIImageView()

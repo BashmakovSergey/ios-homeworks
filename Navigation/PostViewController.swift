@@ -1,7 +1,7 @@
 import UIKit
 import StorageService
 
-class PostViewController: UIViewController {
+final class PostViewController: UIViewController {
     
     var post: PostFeed
     

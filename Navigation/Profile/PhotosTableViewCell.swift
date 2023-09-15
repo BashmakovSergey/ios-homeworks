@@ -1,6 +1,6 @@
 import UIKit
 
-class PhotosTableViewCell: UITableViewCell {
+final class PhotosTableViewCell: UITableViewCell {
     
     var labelPhotos: UILabel = {
         let label = UILabel()
