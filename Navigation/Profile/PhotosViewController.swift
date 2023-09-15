@@ -26,7 +26,6 @@ final class PhotosViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

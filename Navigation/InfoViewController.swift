@@ -33,14 +33,21 @@ final class InfoViewController: UIViewController {
     
     @objc func alertViewController(_ sender: UIAlertController) {
         let alertController = UIAlertController(title: "Информация первая", message: "Информация вторая, сообщение", preferredStyle: .alert)
+        
+        let actionFirstName = "Левый"
+        let actionSecondName = "Правый"
 
-        let actionFirst = UIAlertAction(title: "Левый", style: .default, handler: nil)
-        let actionSecond = UIAlertAction(title: "Правый", style: .default, handler: nil)
+        let actionFirst = UIAlertAction(title: actionFirstName, style: .default, handler: { action in
+            print("Нажал на кнопку \(actionFirstName)")
+        })
+        let actionSecond = UIAlertAction(title: actionSecondName, style: .default, handler: { action in
+            print("Нажал на кнопку \(actionSecondName)")
+        })
         
         alertController.addAction(actionFirst)
-        print("Нажал на кнопку \(actionFirst)")
+//        print("Нажал на кнопку \(actionFirst)")
         alertController.addAction(actionSecond)
-        print("Нажал на кнопку \(actionSecond)")
+//        print("Нажал на кнопку \(actionSecond)")
         self.present(alertController, animated: true)
         }
 }

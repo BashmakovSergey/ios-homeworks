@@ -4,7 +4,6 @@ final class Checker {
     
     static let shared = Checker()
     
-    //пока correctLogin совпадает с CurrentUserService userLogin
     private let correctLogin: String = "IamNotaPig"
     private let correctPassword: String = "RoboCop"
     
@@ -14,4 +13,23 @@ final class Checker {
         let isCorrectLoginAndPassword = correctLogin == inputLogin && correctPassword == inputPassword
         return isCorrectLoginAndPassword
     }
+    
+    func checkLoginOnly(inputLogin: String) -> Bool {
+        let isCorrectLogin = correctLogin == inputLogin
+        return isCorrectLogin
+    }
+    
+    func checkPasswordOnly(inputPassword: String) -> Bool {
+        let isCorrectPassword = correctPassword == inputPassword
+        return isCorrectPassword
+    }
+    
+    func returnCorrectLogin() -> String{
+        return correctLogin
+    }
+    
+    func returnCorrectPassword() -> String{
+        return correctPassword
+    }
+    
 }
