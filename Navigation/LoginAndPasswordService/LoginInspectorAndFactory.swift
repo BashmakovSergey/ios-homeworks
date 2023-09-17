@@ -19,7 +19,7 @@ class LoginInspector: LoginViewControllerDelegate {
 
 struct MyLogInFactory: LoginFactory {
     
-    private let inspector =  LoginInspector()
+    private let inspector = LoginInspector()
     
     func makeLoginInspector() -> LoginInspector {
         return inspector
