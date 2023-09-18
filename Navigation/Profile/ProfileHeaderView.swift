@@ -125,9 +125,6 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         avatarBackground.backgroundColor = .darkGray
         avatarBackground.isHidden = true
         avatarBackground.alpha = 0
-        
-        
-        
     }
     
     private func setupConstrain(){

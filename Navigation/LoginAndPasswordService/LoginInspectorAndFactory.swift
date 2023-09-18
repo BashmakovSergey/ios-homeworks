@@ -2,6 +2,15 @@ import Foundation
 
 class LoginInspector: LoginViewControllerDelegate {
     
+    func checkLoginOnly(inputLogin: String) -> Bool {
+        return Checker.shared.checkLoginOnly(inputLogin: inputLogin)
+    }
+    
+    func checkPasswordOnly(inputPassword: String) -> Bool {
+        return Checker.shared.checkPasswordOnly(inputPassword: inputPassword)
+    }
+    
+    
     func check(inputLogin: String, inputPassword: String) -> Bool {
         return Checker.shared.check(inputLogin: inputLogin, inputPassword: inputPassword)
     }
@@ -10,7 +19,7 @@ class LoginInspector: LoginViewControllerDelegate {
 
 struct MyLogInFactory: LoginFactory {
     
-    private let inspector =  LoginInspector()
+    private let inspector = LoginInspector()
     
     func makeLoginInspector() -> LoginInspector {
         return inspector
@@ -20,6 +29,10 @@ struct MyLogInFactory: LoginFactory {
 
 protocol LoginViewControllerDelegate: AnyObject {
     func check(inputLogin: String, inputPassword: String) -> Bool
+    
+    func checkLoginOnly(inputLogin: String) -> Bool
+    
+    func checkPasswordOnly(inputPassword: String) -> Bool
 }
 
 protocol LoginFactory {

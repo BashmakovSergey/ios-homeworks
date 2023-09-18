@@ -31,7 +31,6 @@
 		598525BE2AA4718800E04060 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598525BD2AA4718800E04060 /* TestUserService.swift */; };
 		59A30BA12A9678D300A58BB4 /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 59A30BA02A9678D300A58BB4 /* StorageService.docc */; };
 		59A30BA72A9678D300A58BB4 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59A30B9D2A9678D300A58BB4 /* StorageService.framework */; };
-		59A30BAE2A9678D300A58BB4 /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A30BAD2A9678D300A58BB4 /* StorageServiceTests.swift */; };
 		59A30BAF2A9678D300A58BB4 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 59A30B9F2A9678D300A58BB4 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		59A30BB22A9678D300A58BB4 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59A30B9D2A9678D300A58BB4 /* StorageService.framework */; };
 		59A30BB32A9678D300A58BB4 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 59A30B9D2A9678D300A58BB4 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -106,7 +105,6 @@
 		59A30B9F2A9678D300A58BB4 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		59A30BA02A9678D300A58BB4 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		59A30BA62A9678D300A58BB4 /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		59A30BAD2A9678D300A58BB4 /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
 		59C77DAA2A6BCB5F00D1D766 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +141,6 @@
 			children = (
 				591743952A5453F0002D6907 /* Navigation */,
 				59A30B9E2A9678D300A58BB4 /* StorageService */,
-				59A30BAC2A9678D300A58BB4 /* StorageServiceTests */,
 				591743942A5453F0002D6907 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -207,14 +204,6 @@
 				59A30BA02A9678D300A58BB4 /* StorageService.docc */,
 			);
 			path = StorageService;
-			sourceTree = "<group>";
-		};
-		59A30BAC2A9678D300A58BB4 /* StorageServiceTests */ = {
-			isa = PBXGroup;
-			children = (
-				59A30BAD2A9678D300A58BB4 /* StorageServiceTests.swift */,
-			);
-			path = StorageServiceTests;
 			sourceTree = "<group>";
 		};
 		59C77DA52A6BC93600D1D766 /* Profile */ = {
@@ -415,7 +404,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59A30BAE2A9678D300A58BB4 /* StorageServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

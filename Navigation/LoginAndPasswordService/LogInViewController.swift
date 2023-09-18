@@ -3,6 +3,7 @@ import UIKit
 enum LoginError: Error {
     case userNotFound
     case wrongPassword
+    case userNotFoundAndWrongPassword
 }
 
 final class LogInViewController: UIViewController {
@@ -126,6 +127,7 @@ final class LogInViewController: UIViewController {
         contentView.addSubviews(vkLogo, loginStackView, loginButton)
         loginStackView.addArrangedSubview(loginField)
         loginStackView.addArrangedSubview(passwordField)
+        convenientNotification()
     }
     
     private func setupConstraints() {
@@ -167,6 +169,8 @@ final class LogInViewController: UIViewController {
                 errorMassage = "Неправильно введен логин"
             case .wrongPassword:
                 errorMassage = "Неправильно введен пароль"
+            case .userNotFoundAndWrongPassword:
+                errorMassage = "Неправильно введен логин и пароль"
         }
         let alertController = UIAlertController(title: "Предупреждение", message: errorMassage, preferredStyle: .alert)
         let actionAlert = UIAlertAction(title: "ОК", style: .default, handler: nil)
@@ -184,15 +188,33 @@ final class LogInViewController: UIViewController {
             let userService = CurrentUserService()
         #endif
         
-        if userService.authorization(userLogin: typedLogin) == nil {
+        if loginDelegate?.checkLoginOnly(inputLogin: typedLogin) == false && loginDelegate?.checkPasswordOnly(inputPassword: typedPassword) == true {
             loginErrorNotification(caseOf: .userNotFound)
-        } else { if loginDelegate?.check(inputLogin: typedLogin, inputPassword: typedPassword) == false {
-            loginErrorNotification(caseOf: .wrongPassword)
+        } else {
+            if loginDelegate?.checkLoginOnly(inputLogin: typedLogin) == true && loginDelegate?.checkPasswordOnly(inputPassword: typedPassword) == false {
+                loginErrorNotification(caseOf: .wrongPassword)
+            } else {
+                if loginDelegate?.check(inputLogin: typedLogin, inputPassword: typedPassword) == false {
+                    loginErrorNotification(caseOf: .userNotFoundAndWrongPassword)
                 } else {
-                    let profileViewController = ProfileViewController(userService: userService.authorization(userLogin: typedLogin))
+                    let profileViewController = ProfileViewController(userService: userService.authorization())
                     navigationController?.pushViewController(profileViewController, animated: true)
                 }
+            }
         }
+        
+    }
+    
+    func convenientNotification (){
+        let alertController = UIAlertController(title: "Предупреждение", message: "Для удобства можно установить автоматически правильные Логин и Пароль", preferredStyle: .alert)
+        let actionAlertYes = UIAlertAction(title: "ОК", style: .default, handler: { action in
+            self.loginField.text = Checker.shared.returnCorrectLogin()
+            self.passwordField.text = Checker.shared.returnCorrectPassword()
+        })
+        let actionAlertNo = UIAlertAction(title: "Нет", style: .default, handler: nil)
+        alertController.addAction(actionAlertYes)
+        alertController.addAction(actionAlertNo)
+        self.present(alertController, animated: true)
     }
 
     @objc private func keyboardShow(notification: NSNotification) {
