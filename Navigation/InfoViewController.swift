@@ -7,7 +7,6 @@ final class InfoViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Посмотреть", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
-        
         return button
     }()
     
@@ -18,7 +17,6 @@ final class InfoViewController: UIViewController {
         view.addSubview(actionButton)
         setupContraints()
         actionButton.addTarget(self, action: #selector(alertViewController(_:)), for: .touchUpInside)
-        
     }
     
     private func setupContraints(){
@@ -45,9 +43,7 @@ final class InfoViewController: UIViewController {
         })
         
         alertController.addAction(actionFirst)
-//        print("Нажал на кнопку \(actionFirst)")
         alertController.addAction(actionSecond)
-//        print("Нажал на кнопку \(actionSecond)")
         self.present(alertController, animated: true)
         }
 }
