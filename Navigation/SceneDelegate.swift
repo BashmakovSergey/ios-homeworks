@@ -3,13 +3,15 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    private let loginFactory = MyLogInFactory()
-    
+     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
-        
+
+//     при запуске напрямую tabBarController и без использования координаторов
+/*
+        let loginFactory = MainFactory()
         func createFeedViewController() -> UINavigationController {
             let feedViewController = FeedViewController()
             feedViewController.title = "Лента"
@@ -38,8 +40,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tabBarController.selectedIndex = 0
             return tabBarController
         }
+       
+       window.rootViewController = createTabBarController()
+*/
         
-        window.rootViewController = createTabBarController()
+//        при использовании координаторов
+        let mainCoordinator = MainCoordinator()
+        window.rootViewController = mainCoordinator.startApplication()
+        
         window.makeKeyAndVisible()
         self.window = window
     }

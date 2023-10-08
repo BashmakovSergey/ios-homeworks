@@ -1,16 +1,18 @@
 import Foundation
 
-class FeedModel {
+protocol ViewModel {
+    func check(inputSecretWord word: String)
+    func returnCorrectSecretWord() -> String
+}
+
+class FeedViewModel: ViewModel {
     
     private var secretWord = "Dune"
     let notificationCenter = NotificationCenter.default
-    static let shared = FeedModel()
-    
-    init() {}
     
     var onShowNextView: (() -> Void)?
     
-    lazy var onTapShowFunnyPicture: () -> Void = { [weak self] in
+    lazy var onTapShowNextView: () -> Void = { [weak self] in
         self?.onShowNextView?()
     }
     

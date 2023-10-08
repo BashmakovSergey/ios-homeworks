@@ -4,7 +4,11 @@ import StorageService
 final class FeedViewController: UIViewController {
 
     var post = PostFeed(title: "Мой пост")
-    var viewModel = FeedModel()
+//    использование viewModel с координаторами
+    var viewModel: ViewModel
+    
+//    использование viewModel без координаторов
+//    var viewModel = FeedViewModel()
     
     private lazy var feedScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -25,7 +29,7 @@ final class FeedViewController: UIViewController {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 10
-        
+    
 /* Реализация без СustomButton
         addPostButton(title: "Первый пост", color: .systemPurple, to: stackView, selector: #selector(buttonPressed))
         addPostButton(title: "Второй пост", color: .systemIndigo, to: stackView, selector: #selector(buttonPressed))
@@ -50,7 +54,7 @@ final class FeedViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Введите секретное слово: \(FeedModel.shared.returnCorrectSecretWord())"
+        textField.placeholder = "Введите секретное слово: \(viewModel.returnCorrectSecretWord())"
         textField.textAlignment = .center
         textField.keyboardType = UIKeyboardType.default
         textField.returnKeyType = UIReturnKeyType.done
@@ -87,6 +91,15 @@ final class FeedViewController: UIViewController {
         return resultLabel
     }()
     
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addObrervers()
@@ -102,7 +115,7 @@ final class FeedViewController: UIViewController {
         view.addSubview(feedScrollView)
         feedScrollView.addSubview(contentView)
         contentView.addSubviews(stackView, checkSecretWordTextField, checkGuessButton, resultLabelOfSecretWord)
-        
+        self.tabBarController?.tabBar.backgroundColor = .systemBackground
         setupContraints()
     }
     
