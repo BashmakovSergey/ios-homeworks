@@ -1,16 +1,13 @@
 import Foundation
 
-class FeedModel {
+class FeedViewModel {
     
     private var secretWord = "Dune"
     let notificationCenter = NotificationCenter.default
-    static let shared = FeedModel()
-    
-    init() {}
     
     var onShowNextView: (() -> Void)?
     
-    lazy var onTapShowFunnyPicture: () -> Void = { [weak self] in
+    lazy var onTapShowNextView: () -> Void = { [weak self] in
         self?.onShowNextView?()
     }
     
