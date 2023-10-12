@@ -1,11 +1,11 @@
 import Foundation
 
-protocol ViewModel {
+protocol FeedModelProtocol {
     func check(inputSecretWord word: String)
     func returnCorrectSecretWord() -> String
 }
 
-class FeedViewModel: ViewModel {
+class FeedModel: FeedModelProtocol {
     
     private var secretWord = "Dune"
     let notificationCenter = NotificationCenter.default
