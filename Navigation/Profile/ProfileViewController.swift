@@ -8,6 +8,7 @@ final class ProfileViewController: UIViewController {
     static let photoIdent = "photo"
     
     private var currentUser: User?
+    let coordinator: ProfileCoordinator
     
     static var postTableView: UITableView = {
         let tableView = UITableView.init(frame: .zero,style: .grouped)
@@ -18,8 +19,9 @@ final class ProfileViewController: UIViewController {
         return tableView
     }()
     
-    init(userService: User?) {
+    init(userService: User?, coordinator: ProfileCoordinator) {
         self.currentUser = userService
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -92,7 +94,7 @@ extension ProfileViewController: UITableViewDelegate {
         guard section == 0 else { return nil }
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Self.headerIdent) as! ProfileHeaderView
         let user = currentUser
-        headerView.avatarImageView.image = user?.userAvatar
+        headerView.avatarImageView.image = UIImage(named: user?.userAvatar ?? "logo")
         headerView.fullNameLabel.text = user?.userFullName
         headerView.statusLabel.text = user?.userStatus
         return headerView
@@ -106,7 +108,11 @@ extension ProfileViewController: UITableViewDelegate {
         switch indexPath.section {
         case 0:
             tableView.deselectRow(at: indexPath, animated: false)
-            navigationController?.pushViewController(PhotosViewController(), animated: true)
+//            navigationController?.pushViewController(PhotosViewController(), animated: true)
+            coordinator.presentPhoto(navigationController: self.navigationController)
+            
+            
+            
         case 1:
             guard let cell = tableView.cellForRow(at: indexPath) else { return }
             if let post = cell as? PostTableViewCell {

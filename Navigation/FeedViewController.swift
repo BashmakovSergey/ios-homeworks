@@ -4,7 +4,12 @@ import StorageService
 final class FeedViewController: UIViewController {
 
     var post = PostFeed(title: "Мой пост")
-    var viewModel = FeedModel()
+    let feedModel: FeedViewModelProtocol
+    let coordinator: FeedCoordinator
+    
+    private lazy var buttonAction: (() -> Void) = {
+        self.coordinator.presentPost(navigationController: self.navigationController, title: self.post.title)
+    }
     
     private lazy var feedScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -25,17 +30,11 @@ final class FeedViewController: UIViewController {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 10
-        
-/* Реализация без СustomButton
-        addPostButton(title: "Первый пост", color: .systemPurple, to: stackView, selector: #selector(buttonPressed))
-        addPostButton(title: "Второй пост", color: .systemIndigo, to: stackView, selector: #selector(buttonPressed))
-*/
-        
-//    Реализация через СustomButton
-        var firstButton = CustomButton(titleText: "Первый пост", titleColor: .black, backgroundColor: .systemPurple, tapAction: self.onTapShowNextView)
+    
+        var firstButton = CustomButton(titleText: "Первый пост", titleColor: .black, backgroundColor: .systemPurple, tapAction: buttonAction)
         stackView.addArrangedSubview(firstButton)
         
-        var secondButton = CustomButton(titleText: "Второй пост", titleColor: .black, backgroundColor: .systemIndigo, tapAction: self.onTapShowNextView)
+        var secondButton = CustomButton(titleText: "Второй пост", titleColor: .black, backgroundColor: .systemIndigo, tapAction: buttonAction)
         stackView.addArrangedSubview(secondButton)
         
         return stackView
@@ -50,7 +49,7 @@ final class FeedViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Введите секретное слово: \(FeedModel.shared.returnCorrectSecretWord())"
+        textField.placeholder = "Введите секретное слово: \(feedModel.returnCorrectSecretWord())"
         textField.textAlignment = .center
         textField.keyboardType = UIKeyboardType.default
         textField.returnKeyType = UIReturnKeyType.done
@@ -87,6 +86,16 @@ final class FeedViewController: UIViewController {
         return resultLabel
     }()
     
+    init(coordinator: FeedCoordinator) {
+        self.feedModel = FeedViewModel()
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addObrervers()
@@ -102,7 +111,7 @@ final class FeedViewController: UIViewController {
         view.addSubview(feedScrollView)
         feedScrollView.addSubview(contentView)
         contentView.addSubviews(stackView, checkSecretWordTextField, checkGuessButton, resultLabelOfSecretWord)
-        
+        self.tabBarController?.tabBar.backgroundColor = .systemBackground
         setupContraints()
     }
     
@@ -114,17 +123,11 @@ final class FeedViewController: UIViewController {
         nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    //    Реализация через СustomButton
-        private func onTapShowNextView () {
-            let postViewController = PostViewController(post: post)
-                navigationController?.pushViewController(postViewController, animated: true)
-            }
-    
     private func actionSetStatusButtonPressed() {
         checkSecretWordTextField.endEditing(true)
         
         if checkSecretWordTextField.text != nil && checkSecretWordTextField.text?.count != 0 {
-            viewModel.check(inputSecretWord: checkSecretWordTextField.text ?? "")
+            feedModel.check(inputSecretWord: checkSecretWordTextField.text ?? "")
         }
     }
     
@@ -201,24 +204,6 @@ final class FeedViewController: UIViewController {
         ])
     }
     
-/* Реализация без СustomButton
-    private func addPostButton(title: String, color: UIColor, to view: UIStackView, selector: Selector) {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(title, for: .normal)
-        button.backgroundColor = color
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 12.0
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        button.addTarget(self, action: selector, for: .touchUpInside)
-        view.addArrangedSubview(button)
-    }
-   
-    @objc private func buttonPressed(_ sender: UIButton) {
-        let postViewController = PostViewController(post: post)
-            navigationController?.pushViewController(postViewController, animated: true)
-        }
-*/
 }
 
 extension FeedViewController: UITextFieldDelegate {
