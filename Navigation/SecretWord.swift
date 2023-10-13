@@ -9,13 +9,11 @@ final class SecretWords {
     private let secretWords = [
         SecretWord(secretWord: "Dune"),
         SecretWord(secretWord: "Bad"),
-        SecretWord(secretWord: "WarHammer")
+        SecretWord(secretWord: "WarHammer"),
+        SecretWord(secretWord: "Bolter")
         ]
     
     func todayIsSecretWord() -> String {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-            print("done")
-        })
         guard let randomElement = secretWords.randomElement() else {
             return "error"
         }

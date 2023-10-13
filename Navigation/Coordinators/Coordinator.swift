@@ -1,10 +1,4 @@
-import UIKit
+import Foundation
 
-protocol MainCoordinatorProtocol {
-    func startApplication() -> UIViewController
+protocol Coordinator {
 }
-
-protocol FlowCoordinatorProtocol {
-    func createViewController() -> UINavigationController
-}
-

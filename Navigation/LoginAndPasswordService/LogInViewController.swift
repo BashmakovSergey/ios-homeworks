@@ -9,6 +9,7 @@ enum LoginError: Error {
 final class LogInViewController: UIViewController {
     
     var loginDelegate: LoginViewControllerDelegate?
+    let coordinator: ProfileCoordinator
 
     private lazy var vkLogo: UIImageView = {
         let imageView = UIImageView()
@@ -94,6 +95,15 @@ final class LogInViewController: UIViewController {
         password.isSecureTextEntry = true
         return password
     }()
+    
+    init(coordinator: ProfileCoordinator) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -196,8 +206,7 @@ final class LogInViewController: UIViewController {
                 if loginDelegate?.check(inputLogin: typedLogin, inputPassword: typedPassword) == false {
                     loginErrorNotification(caseOf: .userNotFoundAndWrongPassword)
                 } else {
-                    let profileViewController = ProfileViewController(userService: userService.authorization())
-                    navigationController?.pushViewController(profileViewController, animated: true)
+                    coordinator.presentProfile(navigationController: self.navigationController, user: userService.authorization() ?? User(userFullName: "", userAvatar: "", userStatus: "") )
                 }
             }
         }

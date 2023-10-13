@@ -1,13 +1,18 @@
 import UIKit
+import StorageService
 
-final class FeedCoordinator: FlowCoordinatorProtocol {
+final class FeedCoordinator: Coordinator {
     
-    func createViewController() -> UINavigationController {
-        let viewModel = FeedViewModel()
-        let feedViewController = FeedViewController(viewModel: viewModel)
-        feedViewController.title = "Лента"
-        feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "doc.richtext"), tag: 0)
-        return UINavigationController(rootViewController: feedViewController)
+    func presentPost(navigationController: UINavigationController? , title: String) {
+        let postViewController = PostViewController(postTitle: title, coordinator: self)
+        navigationController?.pushViewController(postViewController, animated: true)
+    }
+    
+    func presentInfo(navigationController: UINavigationController?){
+        let infoViewController = InfoViewController()
+        infoViewController.modalTransitionStyle = .flipHorizontal
+        infoViewController.modalPresentationStyle = .pageSheet
+        navigationController?.present(infoViewController, animated: true)
     }
     
 }

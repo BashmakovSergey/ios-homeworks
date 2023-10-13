@@ -2,11 +2,14 @@ import UIKit
 import StorageService
 
 final class PostViewController: UIViewController {
+
+    var post: PostFeed?
     
-    var post: PostFeed
+    var coordinator: FeedCoordinator
     
-    init(post: PostFeed) {
-        self.post = post
+    init(postTitle: String, coordinator: FeedCoordinator) {
+        post?.title = postTitle
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,20 +24,14 @@ final class PostViewController: UIViewController {
     
     func setupUI(){
         self.view.backgroundColor = .darkGray
-        navigationItem.title = post.title
-        let barButtonItem = UIBarButtonItem(title: "Инфо", style: .plain, target: self, action: #selector(infoViewController))
+        navigationItem.title = post?.title
+        
+        let barButtonItem = UIBarButtonItem(title: "Инфо", style: .plain, target: self, action: #selector(openInfo))
         navigationItem.rightBarButtonItem = barButtonItem
     }
     
-    @objc func buttonPressed(_ sender: UIButton) {
-        dismiss(animated: true)
-    }
-    
-    @objc func infoViewController(_ sender: UIButton) {
-        let infoViewController = InfoViewController()
-        let navigationUIContoller = UINavigationController(rootViewController: infoViewController)
-        navigationUIContoller.modalPresentationStyle = .pageSheet
-        present(navigationUIContoller, animated: true)
+    @objc private func openInfo() {
+        coordinator.presentInfo(navigationController: self.navigationController)
     }
     
 }
