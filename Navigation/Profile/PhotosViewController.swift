@@ -4,8 +4,9 @@ import iOSIntPackage
 final class PhotosViewController: UIViewController {
     
     let photoIdent = "photoCell"
-    private var imagePublisherFacade = ImagePublisherFacade()
-    private var collectionImages: [UIImage] = []
+    private var timer: Timer?
+    private let imageProcessor = ImageProcessor()
+    private var collectionImages: [UIImage] = {Photos.shared.examples}()
     
     lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -28,25 +29,46 @@ final class PhotosViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
+        filterImage(filter: .noir)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "0.0", style: .plain, target: nil, action: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
-        imagePublisherFacade.subscribe(self)
-        self.receive(images: collectionImages)
-        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 40, userImages: Photos.shared.examples)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = true
+        disableTimer()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        imagePublisherFacade.removeSubscription(for: self)
-        imagePublisherFacade.rechargeImageLibrary()
+    }
+    
+    private func disableTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    private func filterImage(filter: ColorFilter) {
+        let timerInterval = 0.01
+        var filterDuration = 0.00
+        timer = Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: true, block: { _ in
+            filterDuration += timerInterval
+            let totalTime = String( format: "%.2f sec", filterDuration)
+            self.navigationItem.rightBarButtonItem?.title = totalTime
+        })
+        imageProcessor.processImagesOnThread(sourceImages: collectionImages, filter: filter, qos: .default) { [weak self] filteredImage in
+            guard let self else { return }
+            self.collectionImages = filteredImage.compactMap { UIImage(cgImage: $0!) }
+            DispatchQueue.main.sync {
+                self.photosCollectionView.reloadData()
+                self.disableTimer()
+            }
+        }
     }
     
     private func setupUI(){
@@ -83,30 +105,12 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 extension PhotosViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-//        решение без observer
-//        return Photos.shared.examples.count
-        
-//        решение через observer
         return collectionImages.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoIdent, for: indexPath) as? PhotosCollectionViewCell else { return UICollectionViewCell()}
-        
-//        решение без observer
-//        cell.update(model: Photos.shared.examples[indexPath.item])
-        
-//        решение через observer
         cell.update(model: collectionImages[indexPath.item])
-        
         return cell
-    }
-}
-
-extension PhotosViewController: ImageLibrarySubscriber {
-    func receive(images: [UIImage]) {
-        self.collectionImages = images
-        photosCollectionView.reloadData()
     }
 }
