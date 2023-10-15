@@ -61,14 +61,36 @@ final class PhotosViewController: UIViewController {
             let totalTime = String( format: "%.2f sec", filterDuration)
             self.navigationItem.rightBarButtonItem?.title = totalTime
         })
+        let startDate = Date()
         imageProcessor.processImagesOnThread(sourceImages: collectionImages, filter: filter, qos: .default) { [weak self] filteredImage in
             guard let self else { return }
             self.collectionImages = filteredImage.compactMap { UIImage(cgImage: $0!) }
             DispatchQueue.main.sync {
                 self.photosCollectionView.reloadData()
                 self.disableTimer()
+                print("Process time:  \(Date().timeIntervalSince(startDate)) seconds")
             }
         }
+    }
+    
+    private func filterImage2(filter: ColorFilter) {
+        let timerInterval = 0.01
+        var filterDuration = 0.00
+        let startDate = Date()
+        timer = Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: true, block: { _ in
+            filterDuration += timerInterval
+            var totalTime = Date().timeIntervalSince(startDate)
+            self.navigationItem.rightBarButtonItem?.title = String( format: "%.2f sec", filterDuration)
+        })
+        ImageProcessor().processImagesOnThread(sourceImages: collectionImages, filter: .noir, qos: .default) { [weak self] images in
+                    guard let self else { return }
+                    self.collectionImages = images.compactMap { $0 }.map { UIImage(cgImage: $0) }
+                    DispatchQueue.main.async {
+                        self.photosCollectionView.reloadData()
+                        self.disableTimer()
+                    }
+                    print("Process time:  \(Date().timeIntervalSince(startDate)) seconds")
+                }
     }
     
     private func setupUI(){
