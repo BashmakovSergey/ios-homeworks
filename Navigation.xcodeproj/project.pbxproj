@@ -29,6 +29,7 @@
 		59701EA02AA7288D006B85C4 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59701E9F2AA7288D006B85C4 /* Checker.swift */; };
 		59701EA22AA72D50006B85C4 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59701EA12AA72D50006B85C4 /* LoginInspector.swift */; };
 		59701EA52AA75334006B85C4 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 59701EA42AA75334006B85C4 /* iOSIntPackage */; };
+		5970FBA52AE27F7200EC9734 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5970FBA42AE27F7200EC9734 /* ExtensionString.swift */; };
 		59753B822A743EA4009AA33F /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59753B812A743EA4009AA33F /* LogInViewController.swift */; };
 		598525B92AA338B300E04060 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598525B82AA338B300E04060 /* User.swift */; };
 		598525BC2AA384DF00E04060 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598525BB2AA384DF00E04060 /* CurrentUserService.swift */; };
@@ -42,6 +43,7 @@
 		59B3D71F2AD31BEA003A6C79 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B3D71B2AD31BEA003A6C79 /* Coordinator.swift */; };
 		59B3D7202AD31BEA003A6C79 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B3D71C2AD31BEA003A6C79 /* FeedCoordinator.swift */; };
 		59B3D7232AD31C11003A6C79 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B3D7222AD31C11003A6C79 /* Factory.swift */; };
+		59C322F52AE1B42D00323347 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C322F42AE1B42D00323347 /* BruteForce.swift */; };
 		59C77DAB2A6BCB5F00D1D766 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C77DAA2A6BCB5F00D1D766 /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +96,7 @@
 		5957B0032AD91BDE001A2F11 /* SecretWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretWord.swift; sourceTree = "<group>"; };
 		59701E9F2AA7288D006B85C4 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		59701EA12AA72D50006B85C4 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
+		5970FBA42AE27F7200EC9734 /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
 		59753B812A743EA4009AA33F /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		598525B82AA338B300E04060 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		598525BB2AA384DF00E04060 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 		59B3D71B2AD31BEA003A6C79 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		59B3D71C2AD31BEA003A6C79 /* FeedCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		59B3D7222AD31C11003A6C79 /* Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		59C322F42AE1B42D00323347 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
 		59C77DAA2A6BCB5F00D1D766 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,6 +169,7 @@
 				5946F0C92A7A484900D81BC8 /* Photos.swift */,
 				5946F0B72A75A8F600D81BC8 /* ExtentionUIImage.swift */,
 				5946F0B92A75A98E00D81BC8 /* ExtensionUIView.swift */,
+				5970FBA42AE27F7200EC9734 /* ExtensionString.swift */,
 				593F3F972ABB7E7C0014FA45 /* CustomButton.swift */,
 			);
 			path = Navigation;
@@ -186,6 +191,7 @@
 				59753B812A743EA4009AA33F /* LogInViewController.swift */,
 				59701E9F2AA7288D006B85C4 /* Checker.swift */,
 				59701EA12AA72D50006B85C4 /* LoginInspector.swift */,
+				59C322F42AE1B42D00323347 /* BruteForce.swift */,
 			);
 			path = LoginAndPasswordService;
 			sourceTree = "<group>";
@@ -360,6 +366,7 @@
 				5946F0BA2A75A98E00D81BC8 /* ExtensionUIView.swift in Sources */,
 				59753B822A743EA4009AA33F /* LogInViewController.swift in Sources */,
 				5957B0002AD91B53001A2F11 /* ProfileCoordinator.swift in Sources */,
+				59C322F52AE1B42D00323347 /* BruteForce.swift in Sources */,
 				598525B92AA338B300E04060 /* User.swift in Sources */,
 				5957B0042AD91BDE001A2F11 /* SecretWord.swift in Sources */,
 				59701EA22AA72D50006B85C4 /* LoginInspector.swift in Sources */,
@@ -370,6 +377,7 @@
 				5946F0B82A75A8F600D81BC8 /* ExtentionUIImage.swift in Sources */,
 				59C77DAB2A6BCB5F00D1D766 /* ProfileHeaderView.swift in Sources */,
 				591743B12A545A25002D6907 /* ProfileViewController.swift in Sources */,
+				5970FBA52AE27F7200EC9734 /* ExtensionString.swift in Sources */,
 				591743992A5453F0002D6907 /* SceneDelegate.swift in Sources */,
 				5946F0C42A7A360B00D81BC8 /* PhotosTableViewCell.swift in Sources */,
 				591743B92A5590CC002D6907 /* InfoViewController.swift in Sources */,

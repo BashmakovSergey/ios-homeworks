@@ -4,12 +4,14 @@ enum LoginError: Error {
     case userNotFound
     case wrongPassword
     case userNotFoundAndWrongPassword
+    case tooStrongPassword
 }
 
 final class LogInViewController: UIViewController {
     
     var loginDelegate: LoginViewControllerDelegate?
     let coordinator: ProfileCoordinator
+    let bruteForce = BruteForce()
 
     private lazy var vkLogo: UIImageView = {
         let imageView = UIImageView()
@@ -87,13 +89,29 @@ final class LogInViewController: UIViewController {
         password.layer.borderColor = UIColor.lightGray.cgColor
         password.layer.borderWidth = 0.25
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: password.frame.height))
-        password.isSecureTextEntry = true
         password.textColor = .black
         password.font = UIFont.systemFont(ofSize: 16)
         password.autocapitalizationType = .none
         password.returnKeyType = .done
         password.isSecureTextEntry = true
         return password
+    }()
+    
+    private lazy var passwordHackingButton: CustomButton  = {
+        let button = CustomButton(titleText: "Подобрать пароль", titleColor: .white, backgroundColor: .purple, tapAction: hackThePassword)
+        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setTitleColor(.darkGray, for: .selected)
+//        button.setTitleColor(.darkGray, for: .highlighted)
+        
+        return button
+    }()
+    
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.hidesWhenStopped = true
+        indicator.style = .large
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
     }()
     
     init(coordinator: ProfileCoordinator) {
@@ -133,7 +151,7 @@ final class LogInViewController: UIViewController {
     private func setupUI(){
         view.addSubview(loginScrollView)
         loginScrollView.addSubview(contentView)
-        contentView.addSubviews(vkLogo, loginStackView, loginButton)
+        contentView.addSubviews(vkLogo, loginStackView, loginButton, passwordHackingButton, activityIndicator)
         loginStackView.addArrangedSubview(loginField)
         loginStackView.addArrangedSubview(passwordField)
         convenientNotification()
@@ -168,6 +186,16 @@ final class LogInViewController: UIViewController {
             loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            passwordHackingButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 16),
+            passwordHackingButton.heightAnchor.constraint(equalToConstant: 50),
+            passwordHackingButton.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
+            passwordHackingButton.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: vkLogo.centerXAnchor),
+            activityIndicator.topAnchor.constraint(equalTo: vkLogo.bottomAnchor, constant: 25),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 100),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 100),
         ])
     }
     
@@ -180,6 +208,8 @@ final class LogInViewController: UIViewController {
                 errorMassage = "Неправильно введен пароль"
             case .userNotFoundAndWrongPassword:
                 errorMassage = "Неправильно введен логин и пароль"
+            case .tooStrongPassword:
+                errorMassage = "Пароль слижком сложный и долго подбирать"
         }
         let alertController = UIAlertController(title: "Предупреждение", message: errorMassage, preferredStyle: .alert)
         let actionAlert = UIAlertAction(title: "ОК", style: .default, handler: nil)
@@ -209,6 +239,28 @@ final class LogInViewController: UIViewController {
                     coordinator.presentProfile(navigationController: self.navigationController, user: userService.authorization() ?? User(userFullName: "", userAvatar: "", userStatus: "") )
                 }
             }
+        }
+        
+    }
+    
+    private func hackThePassword() {
+        activityIndicator.startAnimating()
+        loginDelegate?.passwordSelection()
+        print(Checker.shared.returnCorrectPassword())
+        passwordHackingButton.isEnabled = true
+        let newPassword = Checker.shared.returnCorrectPassword()
+        if bruteForce.isStrongPassword(passwordToUnlock: newPassword) {
+            loginErrorNotification(caseOf: .tooStrongPassword)
+        }
+        let queue = DispatchQueue(label: "hackThePassword", qos: .background)
+        queue.async { [self] in
+            let password = bruteForce.bruteForce(passwordToUnlock: newPassword)
+            DispatchQueue.main.async { [self] in
+                passwordField.text = password
+                passwordField.isSecureTextEntry = false
+                activityIndicator.stopAnimating()
+                passwordHackingButton.isEnabled = false
+          }
         }
         
     }
