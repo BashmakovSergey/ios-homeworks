@@ -1,11 +1,8 @@
 import Foundation
 
 protocol LoginViewControllerDelegate: AnyObject {
-    func check(inputLogin: String, inputPassword: String) -> Bool
     
-    func checkLoginOnly(inputLogin: String) -> Bool
-    
-    func checkPasswordOnly(inputPassword: String) -> Bool
+    func check(inputLogin: String, inputPassword: String) throws -> Bool
     
     func passwordSelection()
 }
@@ -16,21 +13,27 @@ protocol LoginFactory {
 
 class LoginInspector: LoginViewControllerDelegate {
     
-    func checkLoginOnly(inputLogin: String) -> Bool {
-        return Checker.shared.checkLoginOnly(inputLogin: inputLogin)
-    }
-    
-    func checkPasswordOnly(inputPassword: String) -> Bool {
-        return Checker.shared.checkPasswordOnly(inputPassword: inputPassword)
-    }
-    
-    func check(inputLogin: String, inputPassword: String) -> Bool {
-        return Checker.shared.check(inputLogin: inputLogin, inputPassword: inputPassword)
+    func check(inputLogin: String, inputPassword: String) throws -> Bool {
+        let isCorrectLogin = Checker.shared.checkLoginOnly(inputLogin: inputLogin)
+        let isCorrectPassword = Checker.shared.checkPasswordOnly(inputPassword: inputPassword)
+        if !isCorrectLogin && !isCorrectPassword {
+            throw LoginError.userNotFoundAndWrongPassword
+        } else {
+            if !isCorrectLogin && isCorrectPassword {
+                throw LoginError.userNotFound
+            } else {
+                if isCorrectLogin && !isCorrectPassword {
+                    throw LoginError.wrongPassword
+                } else{
+                    return isCorrectLogin && isCorrectPassword
+                }
+            }
+        }
     }
     
     private func randomPassword() -> String {
         let allowedCharacters:[String] = String().printable.map { String($0) }
-        let randomInt = Int.random(in: 3..<6)
+        let randomInt = Int.random(in: 3..<9)
         var passWord = ""
         for _ in 0 ..< randomInt {
             guard let samSymbols = allowedCharacters.randomElement() else {return ""}
