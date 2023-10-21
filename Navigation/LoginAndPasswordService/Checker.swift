@@ -5,7 +5,7 @@ final class Checker {
     static let shared = Checker()
     
     private let correctLogin: String = "IamNotaPig"
-    private let correctPassword: String = "RoboCop"
+    private var correctPassword: String = "RoboCop"
     
     private init() {}
     
@@ -30,6 +30,10 @@ final class Checker {
     
     func returnCorrectPassword() -> String{
         return correctPassword
+    }
+    
+    func setNewPassword(newPassword: String){
+        self.correctPassword = newPassword
     }
     
 }
