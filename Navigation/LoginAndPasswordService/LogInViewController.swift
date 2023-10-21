@@ -100,9 +100,6 @@ final class LogInViewController: UIViewController {
     private lazy var passwordHackingButton: CustomButton  = {
         let button = CustomButton(titleText: "Подобрать пароль", titleColor: .white, backgroundColor: .purple, tapAction: hackThePassword)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitleColor(.darkGray, for: .selected)
-//        button.setTitleColor(.darkGray, for: .highlighted)
-        
         return button
     }()
     
@@ -110,6 +107,7 @@ final class LogInViewController: UIViewController {
         let indicator = UIActivityIndicatorView()
         indicator.hidesWhenStopped = true
         indicator.style = .large
+        indicator.color = .yellow
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
@@ -192,10 +190,10 @@ final class LogInViewController: UIViewController {
             passwordHackingButton.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
             passwordHackingButton.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
             
-            activityIndicator.centerXAnchor.constraint(equalTo: vkLogo.centerXAnchor),
-            activityIndicator.topAnchor.constraint(equalTo: vkLogo.bottomAnchor, constant: 25),
-            activityIndicator.heightAnchor.constraint(equalToConstant: 100),
-            activityIndicator.widthAnchor.constraint(equalToConstant: 100),
+            activityIndicator.centerYAnchor.constraint(equalTo: passwordHackingButton.centerYAnchor),
+            activityIndicator.trailingAnchor.constraint(equalTo: passwordHackingButton.trailingAnchor, constant: -16),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 50),
         ])
     }
     
@@ -247,7 +245,7 @@ final class LogInViewController: UIViewController {
         activityIndicator.startAnimating()
         loginDelegate?.passwordSelection()
         print(Checker.shared.returnCorrectPassword())
-        passwordHackingButton.isEnabled = true
+        passwordHackingButton.isEnabled = false
         let newPassword = Checker.shared.returnCorrectPassword()
         if bruteForce.isStrongPassword(passwordToUnlock: newPassword) {
             loginErrorNotification(caseOf: .tooStrongPassword)
@@ -259,7 +257,7 @@ final class LogInViewController: UIViewController {
                 passwordField.text = password
                 passwordField.isSecureTextEntry = false
                 activityIndicator.stopAnimating()
-                passwordHackingButton.isEnabled = false
+                passwordHackingButton.isEnabled = true
           }
         }
         
