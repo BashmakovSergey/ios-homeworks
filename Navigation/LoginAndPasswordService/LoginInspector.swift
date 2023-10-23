@@ -16,19 +16,13 @@ class LoginInspector: LoginViewControllerDelegate {
     func check(inputLogin: String, inputPassword: String) throws -> Bool {
         let isCorrectLogin = Checker.shared.checkLoginOnly(inputLogin: inputLogin)
         let isCorrectPassword = Checker.shared.checkPasswordOnly(inputPassword: inputPassword)
-        if !isCorrectLogin && !isCorrectPassword {
-            throw LoginError.userNotFoundAndWrongPassword
-        } else {
-            if !isCorrectLogin && isCorrectPassword {
-                throw LoginError.userNotFound
-            } else {
-                if isCorrectLogin && !isCorrectPassword {
-                    throw LoginError.wrongPassword
-                } else{
-                    return isCorrectLogin && isCorrectPassword
-                }
-            }
+        guard isCorrectLogin else {
+            throw isCorrectPassword ? LoginError.userNotFound : LoginError.userNotFoundAndWrongPassword
         }
+        guard isCorrectPassword else {
+            throw LoginError.wrongPassword
+        }
+        return isCorrectLogin && isCorrectPassword
     }
     
     private func randomPassword() -> String {
