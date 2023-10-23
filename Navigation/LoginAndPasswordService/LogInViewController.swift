@@ -225,18 +225,17 @@ final class LogInViewController: UIViewController {
             let userService = CurrentUserService()
         #endif
         
-        if loginDelegate?.checkLoginOnly(inputLogin: typedLogin) == false && loginDelegate?.checkPasswordOnly(inputPassword: typedPassword) == true {
+        do {
+            let _ = try loginDelegate?.check(inputLogin: typedLogin, inputPassword: typedPassword)
+            coordinator.presentProfile(navigationController: self.navigationController, user: userService.authorization() ?? User(userFullName: "", userAvatar: "", userStatus: "") )
+        } catch LoginError.userNotFound {
             loginErrorNotification(caseOf: .userNotFound)
-        } else {
-            if loginDelegate?.checkLoginOnly(inputLogin: typedLogin) == true && loginDelegate?.checkPasswordOnly(inputPassword: typedPassword) == false {
-                loginErrorNotification(caseOf: .wrongPassword)
-            } else {
-                if loginDelegate?.check(inputLogin: typedLogin, inputPassword: typedPassword) == false {
-                    loginErrorNotification(caseOf: .userNotFoundAndWrongPassword)
-                } else {
-                    coordinator.presentProfile(navigationController: self.navigationController, user: userService.authorization() ?? User(userFullName: "", userAvatar: "", userStatus: "") )
-                }
-            }
+        } catch LoginError.wrongPassword {
+            loginErrorNotification(caseOf: .wrongPassword)
+        } catch LoginError.userNotFoundAndWrongPassword {
+            loginErrorNotification(caseOf: .userNotFoundAndWrongPassword)
+        } catch {
+            print("some error")
         }
         
     }
@@ -247,18 +246,28 @@ final class LogInViewController: UIViewController {
         print(Checker.shared.returnCorrectPassword())
         passwordHackingButton.isEnabled = false
         let newPassword = Checker.shared.returnCorrectPassword()
-        if bruteForce.isStrongPassword(passwordToUnlock: newPassword) {
-            loginErrorNotification(caseOf: .tooStrongPassword)
-        }
         let queue = DispatchQueue(label: "hackThePassword", qos: .background)
         queue.async { [self] in
-            let password = bruteForce.bruteForce(passwordToUnlock: newPassword)
-            DispatchQueue.main.async { [self] in
-                passwordField.text = password
-                passwordField.isSecureTextEntry = false
-                activityIndicator.stopAnimating()
-                passwordHackingButton.isEnabled = true
-          }
+            let _ = bruteForce.bruteForce(passwordToUnlock: newPassword) { result in
+                switch result {
+                case .success(let forcedPassword):
+                    DispatchQueue.main.async { [self] in
+                        passwordField.text = forcedPassword
+                        passwordField.isSecureTextEntry = false
+                        activityIndicator.stopAnimating()
+                        passwordHackingButton.isEnabled = true
+                  }
+                case .failure(_):
+                    DispatchQueue.main.async { [self] in
+                        loginErrorNotification(caseOf: .tooStrongPassword)
+                        passwordField.text = ""
+                        passwordField.isSecureTextEntry = false
+                        activityIndicator.stopAnimating()
+                        passwordHackingButton.isEnabled = true
+                    }
+                    
+                }
+            }
         }
         
     }
