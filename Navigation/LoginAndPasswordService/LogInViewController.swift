@@ -1,12 +1,5 @@
 import UIKit
 
-enum LoginError: Error {
-    case userNotFound
-    case wrongPassword
-    case userNotFoundAndWrongPassword
-    case tooStrongPassword
-}
-
 final class LogInViewController: UIViewController {
     
     var loginDelegate: LoginViewControllerDelegate?
