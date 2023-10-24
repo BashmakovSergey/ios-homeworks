@@ -11,6 +11,10 @@ final class FeedViewController: UIViewController {
         self.coordinator.presentPost(navigationController: self.navigationController, title: self.post.title)
     }
     
+    private lazy var buttomMediaAction: (() -> Void) = {
+        self.coordinator.presentMedia(navigationController: self.navigationController)
+    }
+    
     private lazy var feedScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +38,7 @@ final class FeedViewController: UIViewController {
         var firstButton = CustomButton(titleText: "Первый пост", titleColor: .black, backgroundColor: .systemPurple, tapAction: buttonAction)
         stackView.addArrangedSubview(firstButton)
         
-        var secondButton = CustomButton(titleText: "Второй пост", titleColor: .black, backgroundColor: .systemIndigo, tapAction: buttonAction)
+        var secondButton = CustomButton(titleText: "Медиа", titleColor: .black, backgroundColor: .systemIndigo, tapAction: buttomMediaAction)
         stackView.addArrangedSubview(secondButton)
         
         return stackView

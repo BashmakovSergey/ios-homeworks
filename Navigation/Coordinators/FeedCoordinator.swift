@@ -15,4 +15,14 @@ final class FeedCoordinator: Coordinator {
         navigationController?.present(infoViewController, animated: true)
     }
     
+    func presentMedia(navigationController: UINavigationController?){
+        let mediaViewController = MediaViewController(coordinator: self)
+        navigationController?.pushViewController(mediaViewController, animated: true)
+    }
+    
+    func presentVoiceRecorder(navigationController: UINavigationController?){
+        let voiceRecorderViewController = VoiceRecorderViewController()
+        navigationController?.pushViewController(voiceRecorderViewController, animated: true)
+    }
+    
 }
