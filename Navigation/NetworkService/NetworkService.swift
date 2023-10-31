@@ -1,14 +1,18 @@
 import Foundation
 
 enum AppConfiguration: String, CaseIterable {
-    case peopleURL = "https://swapi.dev/api/people/8"
-    case starshipsURL = "https://swapi.dev/api/starships/3"
-    case planetsURL = "https://swapi.dev/api/planets/5"
+    case people = "https://swapi.dev/api/people/8"
+    case starships = "https://swapi.dev/api/starships/3"
+    case planets = "https://swapi.dev/api/planets/5"
+    
+    var url: URL? {
+            URL(string: self.rawValue)
+        }
 }
 
 struct NetworkService {
-    static func request(for configuration: AppConfiguration) {
-            let url = URL(string: configuration.rawValue)!
+    static func request(url: URL?) {
+        guard let url = url else {return}
             let session = URLSession.shared
             let task = session.dataTask(with: url) {data, response, error in
 
