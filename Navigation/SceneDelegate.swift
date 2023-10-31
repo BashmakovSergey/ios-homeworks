@@ -9,6 +9,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
         let mainCoordinator = MainCoordinator()
+        
+        let url = AppConfiguration.allCases.randomElement()?.url
+        NetworkService.request(url: url)
+        
         window.rootViewController = mainCoordinator.start()
         
         window.makeKeyAndVisible()
