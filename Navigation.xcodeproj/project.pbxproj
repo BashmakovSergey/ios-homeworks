@@ -38,6 +38,7 @@
 		5946F0C62A7A363900D81BC8 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5946F0C52A7A363900D81BC8 /* PhotosViewController.swift */; };
 		5946F0C82A7A368D00D81BC8 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5946F0C72A7A368D00D81BC8 /* PhotosCollectionViewCell.swift */; };
 		5946F0CA2A7A484900D81BC8 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5946F0C92A7A484900D81BC8 /* Photos.swift */; };
+		594A7D122AEE59D700543959 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594A7D112AEE59D700543959 /* NetworkService.swift */; };
 		5957B0002AD91B53001A2F11 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5957AFFF2AD91B53001A2F11 /* ProfileCoordinator.swift */; };
 		5957B0042AD91BDE001A2F11 /* SecretWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5957B0032AD91BDE001A2F11 /* SecretWord.swift */; };
 		59701EA02AA7288D006B85C4 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59701E9F2AA7288D006B85C4 /* Checker.swift */; };
@@ -120,6 +121,7 @@
 		5946F0C52A7A363900D81BC8 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		5946F0C72A7A368D00D81BC8 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		5946F0C92A7A484900D81BC8 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		594A7D112AEE59D700543959 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5957AFFF2AD91B53001A2F11 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		5957B0032AD91BDE001A2F11 /* SecretWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretWord.swift; sourceTree = "<group>"; };
 		59701E9F2AA7288D006B85C4 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				591743A12A5453F2002D6907 /* LaunchScreen.storyboard */,
 				591743A42A5453F2002D6907 /* Info.plist */,
 				5921E43C2AE44A4A00F63A98 /* Media */,
+				594A7D102AEE59AF00543959 /* NetworkService */,
 				59C77DA52A6BC93600D1D766 /* Profile */,
 				594006282ABF2D8C0004C717 /* Feed */,
 				598525BA2AA3848D00E04060 /* UserService */,
@@ -249,6 +252,14 @@
 				591743AC2A545A16002D6907 /* FeedViewController.swift */,
 			);
 			name = Feed;
+			sourceTree = "<group>";
+		};
+		594A7D102AEE59AF00543959 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				594A7D112AEE59D700543959 /* NetworkService.swift */,
+			);
+			path = NetworkService;
 			sourceTree = "<group>";
 		};
 		59701E9E2AA72862006B85C4 /* LoginAndPasswordService */ = {
@@ -455,6 +466,7 @@
 				5921E4542AE80DD400F63A98 /* VideosTableViewCell.swift in Sources */,
 				5921E45F2AE824FD00F63A98 /* VoiceRecorderViewController.swift in Sources */,
 				59C77DAB2A6BCB5F00D1D766 /* ProfileHeaderView.swift in Sources */,
+				594A7D122AEE59D700543959 /* NetworkService.swift in Sources */,
 				5921E4472AE6761F00F63A98 /* MediaViewController.swift in Sources */,
 				591743B12A545A25002D6907 /* ProfileViewController.swift in Sources */,
 				5970FBA52AE27F7200EC9734 /* ExtensionString.swift in Sources */,
