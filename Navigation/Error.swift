@@ -5,6 +5,9 @@ enum LoginError: Error {
     case wrongPassword
     case userNotFoundAndWrongPassword
     case tooStrongPassword
+    case suchUserAlreadyExists
+    case authorized
+    case successful
 }
 
 enum mediaError: Error {
