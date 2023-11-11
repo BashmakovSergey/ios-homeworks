@@ -1,53 +1,38 @@
 import Foundation
 
-protocol LoginViewControllerDelegate: AnyObject {
-    
-    func check(inputLogin: String, inputPassword: String) throws -> Bool
-    
-    func passwordSelection()
-}
-
-protocol LoginFactory {
-    func makeLoginInspector() -> LoginInspector
+protocol LoginViewControllerDelegate {
+    func checkCredentials(email: String, password: String) async throws -> User?
+    func SignUp(email: String, password: String) async throws -> User?
+    func isValidEmail(_ email: String) -> Bool
 }
 
 class LoginInspector: LoginViewControllerDelegate {
-    
-    func check(inputLogin: String, inputPassword: String) throws -> Bool {
-        let isCorrectLogin = Checker.shared.checkLoginOnly(inputLogin: inputLogin)
-        let isCorrectPassword = Checker.shared.checkPasswordOnly(inputPassword: inputPassword)
-        guard isCorrectLogin else {
-            throw isCorrectPassword ? LoginError.userNotFound : LoginError.userNotFoundAndWrongPassword
+    var checker = CheckerService()
+   
+    func checkCredentials(email: String, password: String) async throws  -> User? {
+        var user: User?
+        do {
+            user = try await checker.checkCredentials(email: email, password: password)
+        } catch {
+            throw error
         }
-        guard isCorrectPassword else {
-            throw LoginError.wrongPassword
-        }
-        return isCorrectLogin && isCorrectPassword
+        return user
     }
     
-    private func randomPassword() -> String {
-        let allowedCharacters:[String] = String().printable.map { String($0) }
-        let randomInt = Int.random(in: 3..<9)
-        var passWord = ""
-        for _ in 0 ..< randomInt {
-            guard let samSymbols = allowedCharacters.randomElement() else {return ""}
-            passWord.append(samSymbols)
+    func SignUp(email: String, password: String) async throws -> User? {
+        let user: User?
+        do {
+            user = try await checker.signUp(email: email, password: password)
+        } catch {
+            throw error
         }
-        return passWord
+        return user
     }
     
-    func passwordSelection(){
-        Checker.shared.setNewPassword(newPassword: randomPassword())
-    }
-    
-}
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
-struct MyLogInFactory: LoginFactory {
-    
-    private let inspector = LoginInspector()
-    
-    func makeLoginInspector() -> LoginInspector {
-        return inspector
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
     }
-    
 }
