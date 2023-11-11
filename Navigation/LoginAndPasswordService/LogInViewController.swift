@@ -210,7 +210,6 @@ final class LogInViewController: UIViewController {
             do {
                 let currentUser = try await loginDelegate?.checkCredentials(email: loginField.text ?? "", password: passwordField.text ?? "")
                 coordinator.presentProfile(navigationController: navigationController, user: currentUser)
-                loginErrorNotification(caseOf: .successful)
             } catch {
                 loginErrorNotification(caseOf: .wrongPassword)
             }
