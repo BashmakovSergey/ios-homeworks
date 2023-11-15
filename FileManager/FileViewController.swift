@@ -97,14 +97,15 @@ extension FileViewController: UITableViewDataSource {
         let cell = UITableViewCell()
         var content = cell.defaultContentConfiguration()
         content.text = contentFolder[indexPath.row].name
+        content.image = UIImage(named: contentFolder[indexPath.row].name)
         if contentFolder[indexPath.row].type == .folder {
             cell.accessoryType = .disclosureIndicator
         } else {
             if Settings.sizeFile {
-                content.secondaryText = contentFolder[indexPath.row].size
+                content.secondaryText = contentFolder[indexPath.row].size + " " + fileManagerService.getCreationDate(contentFolder[indexPath.row].name)
             }
             cell.accessoryType =  .none
-            cell.isUserInteractionEnabled = false
+            cell.isUserInteractionEnabled = true
         }
         cell.contentConfiguration = content
         return cell
@@ -118,6 +119,7 @@ extension FileViewController: UITableViewDelegate{
         let fileManagerService = FileManagerService(pathForFolder: self.fileManagerService.getPath(name: name) )
         let nextFileViewController = FileViewController(fileManagerService: fileManagerService, currentFolder: name)
         navigationController?.pushViewController(nextFileViewController, animated: true)
+        tableView.largeContentImage = UIImage(named: contentFolder[indexPath.row].name)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -148,7 +150,6 @@ extension FileViewController:  UIImagePickerControllerDelegate & UINavigationCon
                 let alertController = UIAlertController(title: "Name is empty", message: nil, preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                 self.present(alertController, animated: true)
-
             }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)

@@ -6,6 +6,7 @@ protocol FileManagerServiceProtocol {
     func createFile(imageURL: NSURL, fileName: String)
     func removeContent(name: String)
     func getPath(name: String) -> String
+    func getCreationDate(_ item: String) -> String
 }
 
 final class FileManagerService: (FileManagerServiceProtocol) {
@@ -25,6 +26,21 @@ final class FileManagerService: (FileManagerServiceProtocol) {
         var objCBool: ObjCBool = false
         FileManager.default.fileExists(atPath: path, isDirectory: &objCBool)
         return objCBool.boolValue ? TypeOfFile.folder : TypeOfFile.file
+    }
+    
+    func getCreationDate(_ item: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        if isDirectory(item) == .file {
+            let path = pathForFolder + "/" + item
+            let attributes = try! FileManager.default.attributesOfItem(atPath: path)
+            let creationDate = attributes[.modificationDate] as! Date
+            return "\(dateFormatter.string(from: creationDate))"
+        } else {
+            return ""
+        }
     }
  
     private func getSize(_ item: String) -> String {
