@@ -16,29 +16,6 @@ struct JokeCodable: Codable {
     let value: String
 }
 
-
-
-//enum RequestJokes: CustomStringConvertible {
-//    case random
-//    case categoryName
-//    case categories
-//    
-//    var url: URL? {
-//        URL(string: "https://api.chucknorris.io/jokes/categories")
-//    }
-//    
-//    var description: String {
-//        switch self {
-//        case .random:
-//            return "https://api.chucknorris.io/jokes/random"
-//        case .categoryName:
-//            return "https://api.chucknorris.io/jokes/random?category="
-//        case .categories:
-//            return "https://api.chucknorris.io/jokes/categories"
-//        }
-//    }
-//}
-
 enum NetworkError: Int, Error {
     case badRequest = 400
     case unauthorized = 401

@@ -61,7 +61,7 @@ final class RandomQuoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        categoriesJokes = AllJoke.shared.realm.objects(CategoriesJokesRealm.self)
+        categoriesJokes = AllJoke.shared.realm?.objects(CategoriesJokesRealm.self)
         setupUI()
         setupConstraints()
         setCategory()
@@ -88,13 +88,13 @@ final class RandomQuoteViewController: UIViewController {
             let jokeIDFromRequest = joke.id
             var isJokeInRealm = false
             DispatchQueue.main.async {
-                if AllJoke.shared.realm.objects(JokeRealm.self).filter("id == %@", jokeIDFromRequest).first != nil {
+                if AllJoke.shared.realm?.objects(JokeRealm.self).filter("id == %@", jokeIDFromRequest).first != nil {
                     isJokeInRealm = true
                 } else {
                     isJokeInRealm = false
                 }
-            let categoryJoke = AllJoke.shared.realm.objects(CategoriesJokesRealm.self).filter("nameOfCategory == %@", category)
-            let categoryJoke2 = categoryJoke.toArray(type: CategoriesJokesRealm.self)
+                let categoryJoke = AllJoke.shared.realm?.objects(CategoriesJokesRealm.self).filter("nameOfCategory == %@", category)
+                guard let categoryJoke2 = categoryJoke?.toArray(type: CategoriesJokesRealm.self) else {return}
             self?.jokeLabel.text = "Категория: \(joke.categories[0])" + "\nУникальный ID: \n\(joke.id)" + "\nШутка: \(joke.value)" + "\nДата загрузки : \(Date().formated())"
             if !isJokeInRealm {
                 let oneNewJoke = JokeRealm()
@@ -147,7 +147,7 @@ final class RandomQuoteViewController: UIViewController {
     
     @objc private func debugShow() {
         DispatchQueue.main.async {
-            let categoryJoke = AllJoke.shared.realm.objects(CategoriesJokesRealm.self).filter("nameOfCategory == %@", self.categoriesJokes.randomElement()?.nameOfCategory ?? "animal").first
+            let categoryJoke = AllJoke.shared.realm?.objects(CategoriesJokesRealm.self).filter("nameOfCategory == %@", self.categoriesJokes.randomElement()?.nameOfCategory ?? "animal").first
             print("func debugShow: " + (categoryJoke?.nameOfCategory ?? "") as String)
             if let categoryJoke = categoryJoke {
                 for joke in categoryJoke.jokes {
@@ -161,7 +161,7 @@ final class RandomQuoteViewController: UIViewController {
         DispatchQueue.main.async {
             AllJoke.shared.deleteAll()
             self.setCategory()
-            self.categoriesJokes = AllJoke.shared.realm.objects(CategoriesJokesRealm.self)
+            self.categoriesJokes = AllJoke.shared.realm?.objects(CategoriesJokesRealm.self)
         }
     }
     

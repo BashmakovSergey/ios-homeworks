@@ -2,19 +2,19 @@ import RealmSwift
 
 final class AllJoke {
     static let shared = AllJoke()
-    let realm = try! Realm()
+    let realm = try? Realm()
     
     private init() {}
     
     func addCategories(_ categoriesJokes: [CategoriesJokesRealm]) {
         write {
-            realm.add(categoriesJokes)
+            realm?.add(categoriesJokes)
         }
     }
     
     func addCategory(_ categoryJokes: CategoriesJokesRealm) {
         write {
-            realm.add(categoryJokes)
+            realm?.add(categoryJokes)
         }
     }
     
@@ -26,13 +26,13 @@ final class AllJoke {
     
     func deleteAll() {
         write {
-            realm.deleteAll()
+            realm?.deleteAll()
         }
     }
     
     private func write(completion: () -> Void) {
         do {
-            try realm.write {
+            try realm?.write {
                 completion()
             }
         } catch let error {

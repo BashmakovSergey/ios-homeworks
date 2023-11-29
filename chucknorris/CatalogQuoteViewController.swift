@@ -25,7 +25,7 @@ final class CatalogQuoteViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
-        categoriesJokes = AllJoke.shared.realm.objects(CategoriesJokesRealm.self)
+        categoriesJokes = AllJoke.shared.realm?.objects(CategoriesJokesRealm.self)
         showAllJoke()
     }
     
