@@ -8,7 +8,7 @@ final class ProfileViewController: UIViewController {
     static let photoIdent = "photo"
     
     private var currentUser: User?
-    let coordinator: ProfileCoordinator
+    let coordinator: ProfileCoordinator?
     
     static var postTableView: UITableView = {
         let tableView = UITableView.init(frame: .zero,style: .grouped)
@@ -19,7 +19,7 @@ final class ProfileViewController: UIViewController {
         return tableView
     }()
     
-    init(userService: User?, coordinator: ProfileCoordinator) {
+    init(userService: User?, coordinator: ProfileCoordinator?) {
         self.currentUser = userService
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
@@ -108,7 +108,7 @@ extension ProfileViewController: UITableViewDelegate {
         switch indexPath.section {
         case 0:
             tableView.deselectRow(at: indexPath, animated: false)
-            coordinator.presentPhoto(navigationController: self.navigationController)
+            coordinator?.presentPhoto(navigationController: self.navigationController)
         case 1:
             guard let cell = tableView.cellForRow(at: indexPath) else { return }
             if let post = cell as? PostTableViewCell {

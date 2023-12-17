@@ -19,7 +19,7 @@ final class MainCoordinator: Coordinator {
     }
     
     private func addControllersToTabBar(){
-        mainTabBarController.viewControllers = [createFeed(), createProfile()]
+        mainTabBarController.viewControllers = [createFeed(), createProfile(), createFavorite()]
     }
     
     private func createFeed() -> UINavigationController {
@@ -39,6 +39,14 @@ final class MainCoordinator: Coordinator {
         profileNavigationController.title = "Профиль"
         profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
         return profileNavigationController
+    }
+    
+    private func createFavorite() -> UINavigationController {
+        let favoriteViewController = FavoriteViewController()
+        let favoriteNavigationController = UINavigationController(rootViewController: favoriteViewController)
+        favoriteNavigationController.title = "Избранное"
+        favoriteNavigationController.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(systemName: "link.circle"), tag: 2)
+        return favoriteNavigationController
     }
     
 }

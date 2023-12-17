@@ -4,6 +4,7 @@ import StorageService
 final class PostTableViewCell: UITableViewCell {
     
     private var viewCounter = 0
+    let favoriteService = FavoriteService()
     
     var postAuthor: UILabel = {
         let label = UILabel()
@@ -51,6 +52,7 @@ final class PostTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubviews(postAuthor, postImage, postDescription, postLikes, postViews)
         setupConstraints()
+        setRecognizer()
         self.selectionStyle = .default
     }
     
@@ -89,6 +91,20 @@ final class PostTableViewCell: UITableViewCell {
         postLikes.text = "Лайк: \(model.likes)"
         viewCounter = model.views
         postViews.text = "Просмотров: \(model.views)"
+    }
+    
+    private func setRecognizer() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(tapPressed))
+        recognizer.numberOfTapsRequired = 2
+        addGestureRecognizer(recognizer)
+    }
+    
+    @objc private func tapPressed() {
+        let description = postDescription.text
+        let postsFilter = postExamples.filter {$0.description == description}
+        if let resultPost = postsFilter.first {
+            favoriteService.createItem(post: resultPost)
+        }
     }
     
     func incrementPostViewsCounter() {

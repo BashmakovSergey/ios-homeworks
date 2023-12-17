@@ -35,7 +35,6 @@ final class InfoViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Посмотреть", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
-//        button.isHidden = true
         return button
     }()
     
@@ -65,7 +64,6 @@ final class InfoViewController: UIViewController {
             residentsTableView.leadingAnchor.constraint(equalTo: orbitalPeriodLabel.leadingAnchor),
             residentsTableView.trailingAnchor.constraint(equalTo: orbitalPeriodLabel.trailingAnchor),
             residentsTableView.heightAnchor.constraint(equalToConstant: 350),
-//            residentsTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
             actionButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor,constant: 20.0),
             actionButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor,constant: -20.0),
