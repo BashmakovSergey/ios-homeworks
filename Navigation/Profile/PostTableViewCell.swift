@@ -4,6 +4,7 @@ import StorageService
 final class PostTableViewCell: UITableViewCell {
     
     private var viewCounter = 0
+    var favorite: Bool = false
     let favoriteService = FavoriteService()
     
     var postAuthor: UILabel = {
@@ -48,9 +49,19 @@ final class PostTableViewCell: UITableViewCell {
         return label
     }()
     
+    var favoriteChecker: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.black.cgColor
+        return view
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubviews(postAuthor, postImage, postDescription, postLikes, postViews)
+        contentView.addSubviews(postAuthor, postImage, postDescription, postLikes, postViews, favoriteChecker)
         setupConstraints()
         setRecognizer()
         self.selectionStyle = .default
@@ -80,7 +91,12 @@ final class PostTableViewCell: UITableViewCell {
 
             postViews.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: 16),
             postViews.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            postViews.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+            postViews.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            
+            favoriteChecker.heightAnchor.constraint(equalToConstant: 30),
+            favoriteChecker.widthAnchor.constraint(equalToConstant: 30),
+            favoriteChecker.rightAnchor.constraint(equalTo: postAuthor.rightAnchor, constant: -10),
+            favoriteChecker.topAnchor.constraint(equalTo: postAuthor.topAnchor, constant: 0),
         ])
     }
 
@@ -91,6 +107,8 @@ final class PostTableViewCell: UITableViewCell {
         postLikes.text = "Лайк: \(model.likes)"
         viewCounter = model.views
         postViews.text = "Просмотров: \(model.views)"
+        favoriteChecker.backgroundColor = model.favorite == true ? .red : .white
+        favorite = model.favorite
     }
     
     private func setRecognizer() {
@@ -101,8 +119,17 @@ final class PostTableViewCell: UITableViewCell {
     
     @objc private func tapPressed() {
         let description = postDescription.text
-        let postsFilter = postExamples.filter {$0.description == description}
-        if let resultPost = postsFilter.first {
+        let postsFilter = postExamples.filter {
+            $0.description == description
+        }
+        if let resultPost = postsFilter.first, favorite == false {
+            if let rowIndex = postExamples.firstIndex(where: {$0.description == resultPost.description}) {
+                postExamples[rowIndex].favorite = true
+            } else {
+                if let rowIndex = postExamples.firstIndex(where: {$0.description == resultPost.description}) {
+                    postExamples[rowIndex].favorite = false
+                }
+            }
             favoriteService.createItem(post: resultPost)
         }
     }

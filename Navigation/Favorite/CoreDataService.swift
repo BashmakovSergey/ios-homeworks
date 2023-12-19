@@ -1,14 +1,9 @@
 import CoreData
 import Foundation
 
-protocol CoreDataServiceProtocol {
-    var context: NSManagedObjectContext {get}
-    func saveContext()
-}
-
-final class CoreDataService: CoreDataServiceProtocol{
+final class CoreDataService{
    
-    static let shared: CoreDataServiceProtocol = CoreDataService()
+    static let shared = CoreDataService()
     
     private init(){}
     
