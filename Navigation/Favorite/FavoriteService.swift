@@ -58,7 +58,7 @@ final class FavoriteService{
     }
     
     func fetchPosts(withPredicate search: String, completion: @escaping ([FavoritesPostData]) -> Void) {
-        let predicate = NSPredicate(format: "author == %@", search)
+        let predicate = NSPredicate(format: "author CONTAINS %@", search)
         coreDataService.backgroundContext.perform { [weak self] in
             guard let self else { return }
             let request = NSFetchRequest<FavoritesPostData>(entityName: "FavoritesPostData")
