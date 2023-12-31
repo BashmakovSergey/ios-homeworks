@@ -31,7 +31,7 @@ final class AllQuoteViewController: UIViewController {
     }
     
     func showAllJoke() {
-        allJokes = AllJoke.shared.realm?.objects(JokeRealm.self).sorted(byKeyPath: "createdDate")
+        allJokes = AllJoke.shared.realm.objects(JokeRealm.self).sorted(byKeyPath: "createdDate")
         allJokeTable.removeAll()
         if let allJokes = allJokes {
             for joke in allJokes.elements {

@@ -4,8 +4,8 @@ import AVKit
 
 class VoiceRecorderViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
-    private var recordingSession: AVAudioSession!
-    private var audioRecorder: AVAudioRecorder!
+    private var recordingSession: AVAudioSession?
+    private var audioRecorder: AVAudioRecorder?
     private var player = AVAudioPlayer()
     
     let backButton: UIBarButtonItem = {
@@ -60,7 +60,7 @@ class VoiceRecorderViewController: UIViewController, AVAudioRecorderDelegate, AV
             playRecordButton.centerXAnchor.constraint(equalTo: recordButton.centerXAnchor),
             playRecordButton.centerYAnchor.constraint(equalTo: recordButton.centerYAnchor, constant: 90),
             playRecordButton.heightAnchor.constraint(equalToConstant: 60),
-            playRecordButton.widthAnchor.constraint(equalToConstant: 300)
+            playRecordButton.widthAnchor.constraint(equalToConstant: 300),
         ])
     }
 }

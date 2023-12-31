@@ -25,4 +25,9 @@ final class FeedCoordinator: Coordinator {
         navigationController?.pushViewController(voiceRecorderViewController, animated: true)
     }
     
+    func presentMap(navigationController: UINavigationController?){
+        let mapViewController = MapViewController(coordinator: self)
+        navigationController?.pushViewController(mapViewController, animated: true)
+    }
+    
 }
