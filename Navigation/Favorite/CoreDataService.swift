@@ -7,32 +7,28 @@ final class CoreDataService{
     
     private init(){}
     
-    private let persistentContainer:NSPersistentContainer = {
+    private let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: .coreDataBaseName)
         container.loadPersistentStores { _, error in
             if let error = error {
                 print(error)
-                assertionFailure("load PersistentStores error ")
+                assertionFailure()
             }
         }
         return container
     }()
     
-    lazy var context: NSManagedObjectContext = {
-        return persistentContainer.viewContext
+    lazy var mainContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+        return context
     }()
     
-    func saveContext() {
-        if context.hasChanges{
-            do{
-                try context.save()
-            } catch {
-                print(error)
-                assertionFailure("Save Error")
-            }
-        }
-    }
-    
+    lazy var backgroundContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+        return context
+    }()
 }
 
 private extension String {

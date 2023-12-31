@@ -6,6 +6,7 @@ final class PostTableViewCell: UITableViewCell {
     private var viewCounter = 0
     var favorite: Bool = false
     let favoriteService = FavoriteService()
+    var favoriteBase = [FavoritesPostData]()
     
     var postAuthor: UILabel = {
         let label = UILabel()
@@ -130,7 +131,9 @@ final class PostTableViewCell: UITableViewCell {
                     postExamples[rowIndex].favorite = false
                 }
             }
-            favoriteService.createItem(post: resultPost)
+            favoriteService.createItem(with: resultPost) { [weak self] newCreateItem in
+                self?.favoriteBase = newCreateItem
+            }
         }
     }
     
