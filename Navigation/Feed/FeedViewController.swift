@@ -15,6 +15,10 @@ final class FeedViewController: UIViewController {
         self.coordinator.presentMedia(navigationController: self.navigationController)
     }
     
+    private lazy var buttonMapAction: (() -> Void) = {
+        self.coordinator.presentMap(navigationController: self.navigationController)
+    }
+    
     private lazy var feedScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,6 +44,9 @@ final class FeedViewController: UIViewController {
         
         var secondButton = CustomButton(titleText: "Медиа", titleColor: .black, backgroundColor: .systemIndigo, tapAction: buttomMediaAction)
         stackView.addArrangedSubview(secondButton)
+        
+        var thirdButton = CustomButton(titleText: "Карта", titleColor: .black, backgroundColor: .lightGray, tapAction: buttonMapAction)
+        stackView.addArrangedSubview(thirdButton)
         
         return stackView
     }()
