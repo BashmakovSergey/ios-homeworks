@@ -27,7 +27,7 @@ class FeedViewModel: FeedViewModelProtocol {
         var notification = Notification(name: NSNotification.Name(rawValue: "Clear notification"), object: nil, userInfo: nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: { [self] in
-            print("ожидание выполнено")
+            print("Waiting is completed".localized)
             if word == secretWord {
                 notification.name = NSNotification.Name(rawValue: "Word is correct")
             } else {

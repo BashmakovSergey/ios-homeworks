@@ -105,9 +105,9 @@ final class PostTableViewCell: UITableViewCell {
         postAuthor.text = model.author
         postDescription.text = model.description
         postImage.image = UIImage(named: model.image)
-        postLikes.text = "Лайк: \(model.likes)"
+        postLikes.text = String.localizedStringWithFormat("Likes".localized, model.likes)
         viewCounter = model.views
-        postViews.text = "Просмотров: \(model.views)"
+        postViews.text = String.localizedStringWithFormat("Views".localized, model.views)
         favoriteChecker.backgroundColor = model.favorite == true ? .red : .white
         favorite = model.favorite
     }
@@ -139,6 +139,7 @@ final class PostTableViewCell: UITableViewCell {
     
     func incrementPostViewsCounter() {
         viewCounter += 1
-        postViews.text = "Просмотров: \(viewCounter)"
+        postViews.text = String.localizedStringWithFormat("Views".localized, viewCounter)
     }
+    
 }

@@ -18,7 +18,7 @@ final class FavoriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Избранное"
+        title = "Favorites".localized
         view.backgroundColor = .systemMint
         view.addSubviews(tableView)
         setupContraints()
@@ -42,7 +42,7 @@ final class FavoriteViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "Избранные посты"
+        navigationItem.title = "Favorites posts".localized
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "vkBrandColor") ?? .blue]
         let setFilterBarButton = UIBarButtonItem(image: UIImage(systemName: "doc.text.magnifyingglass"), style: .plain, target: self, action: #selector(showFilterByAuthorAlert))
         let clearFilterButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(clearFilter))
@@ -50,15 +50,15 @@ final class FavoriteViewController: UIViewController {
     }
     
     @objc private func showFilterByAuthorAlert() {
-        let alert = UIAlertController(title: "Введите автора", message: "Сортировка постов по автору", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Enter the author".localized, message: "Sorting posts by author".localized, preferredStyle: .alert)
         alert.addTextField { textField in
-            textField.placeholder = "Имя автора"
+            textField.placeholder = "Author's name".localized
             textField.autocorrectionType = .yes
             textField.autocapitalizationType = .words
             textField.becomeFirstResponder()
         }
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Поиск", style: .default, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Search".localized, style: .default, handler: { [weak self] _ in
             guard let self, let textField = alert.textFields?.first, let author = textField.text else { return }
             favoriteService.fetchPosts(withPredicate: author) { [weak self] newFavoriteBase in
                 self?.favoriteBase = newFavoriteBase
@@ -123,8 +123,7 @@ extension FavoriteViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let favoritePost = favoriteBase[indexPath.row]
-        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { [weak self] _,_,_ in
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete".localized) { [weak self] _,_,_ in
             guard let self else { return }
             favoriteService.deleteItem(favoriteBase[indexPath.row]) { [weak self] newFavoriteBase in
                 self?.favoriteBase = newFavoriteBase

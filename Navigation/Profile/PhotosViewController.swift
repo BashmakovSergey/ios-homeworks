@@ -58,7 +58,7 @@ final class PhotosViewController: UIViewController {
         var filterDuration = 0.00
         timer = Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: true, block: { _ in
             filterDuration += timerInterval
-            let totalTime = String( format: "%.2f sec", filterDuration)
+            let totalTime = String( format: "%.2f " + "sec".localized, filterDuration)
             self.navigationItem.rightBarButtonItem?.title = totalTime
         })
         let startDate = Date()
@@ -68,18 +68,18 @@ final class PhotosViewController: UIViewController {
             DispatchQueue.main.sync {
                 self.photosCollectionView.reloadData()
                 self.disableTimer()
-                print("Process time:  \(Date().timeIntervalSince(startDate)) seconds")
+                print("Process time".localized + ":  \(Date().timeIntervalSince(startDate)) " + "seconds".localized)
             }
         }
     }
     
     private func setupUI(){
-        self.title = "Фотогалерея"
+        self.title = "Photo Gallery".localized
         self.view.addSubview(photosCollectionView)
         self.photosCollectionView.dataSource = self
         self.photosCollectionView.delegate = self
         let backButton = UIBarButtonItem()
-        backButton.title = "Назад"
+        backButton.title = "Back".localized
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     

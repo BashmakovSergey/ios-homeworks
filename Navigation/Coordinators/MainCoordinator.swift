@@ -25,8 +25,8 @@ final class MainCoordinator: Coordinator {
     private func createFeed() -> UINavigationController {
         let feedCoordinator = FeedCoordinator()
         let feedNavigationController = UINavigationController(rootViewController: FeedViewController(coordinator: feedCoordinator))
-        feedNavigationController.title = "Лента"
-        feedNavigationController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName:"doc.richtext"), tag: 0)
+        feedNavigationController.title = "Feed".localized
+        feedNavigationController.tabBarItem = UITabBarItem(title: "Feed".localized, image: UIImage(systemName:"doc.richtext"), tag: 0)
         return feedNavigationController
     }
 
@@ -36,16 +36,16 @@ final class MainCoordinator: Coordinator {
         let loginViewController = LogInViewController(coordinator: profileCoordinator)
         loginViewController.loginDelegate = loginFactory.makeLoginInspector()
         let profileNavigationController = UINavigationController(rootViewController: loginViewController)
-        profileNavigationController.title = "Профиль"
-        profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
+        profileNavigationController.title = "Profile".localized
+        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile".localized, image: UIImage(systemName: "person.circle"), tag: 1)
         return profileNavigationController
     }
     
     private func createFavorite() -> UINavigationController {
         let favoriteViewController = FavoriteViewController()
         let favoriteNavigationController = UINavigationController(rootViewController: favoriteViewController)
-        favoriteNavigationController.title = "Избранное"
-        favoriteNavigationController.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(systemName: "link.circle"), tag: 2)
+        favoriteNavigationController.title = "Favorites".localized
+        favoriteNavigationController.tabBarItem = UITabBarItem(title: "Favorites".localized, image: UIImage(systemName: "link.circle"), tag: 2)
         return favoriteNavigationController
     }
     

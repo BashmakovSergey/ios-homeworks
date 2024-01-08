@@ -33,14 +33,14 @@ final class InfoViewController: UIViewController {
     private lazy var actionButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Посмотреть", for: .normal)
+        button.setTitle("To see".localized, for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Инфо"
+        title = "Info".localized
         view.backgroundColor = .systemMint
         view.addSubviews(actionButton, titleLabel, orbitalPeriodLabel, residentsTableView)
         setupContraints()
@@ -92,7 +92,7 @@ final class InfoViewController: UIViewController {
             switch result {
             case .success(let planet):
                 DispatchQueue.main.async {
-                    self?.orbitalPeriodLabel.text = "период обращения планеты Татуин вокруг своей звезды: \(planet.orbitalPeriod)"
+                    self?.orbitalPeriodLabel.text = "The period of the planet Tatooine's revolution around its star".localized + ": \(planet.orbitalPeriod)"
                 }
                 planet.residents.forEach { resident in
                     self?.getInfoAboutResident(resident: resident) { resultResident in
@@ -126,16 +126,16 @@ final class InfoViewController: UIViewController {
     }
     
     @objc func alertViewController(_ sender: UIAlertController) {
-        let alertController = UIAlertController(title: "Информация первая", message: "Информация вторая, сообщение", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Information first".localized, message: "The second information, the message".localized, preferredStyle: .alert)
         
-        let actionFirstName = "Левый"
-        let actionSecondName = "Правый"
+        let actionFirstName = "Left".localized
+        let actionSecondName = "Right".localized
 
         let actionFirst = UIAlertAction(title: actionFirstName, style: .default, handler: { action in
-            print("Нажал на кнопку \(actionFirstName)")
+            print("Pressed the button".localized + " \(actionFirstName)")
         })
         let actionSecond = UIAlertAction(title: actionSecondName, style: .default, handler: { action in
-            print("Нажал на кнопку \(actionSecondName)")
+            print("Pressed the button".localized + " \(actionSecondName)")
         })
         
         alertController.addAction(actionFirst)

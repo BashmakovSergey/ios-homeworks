@@ -18,7 +18,7 @@ class MediaViewController: UIViewController {
     
     let backButton: UIBarButtonItem = {
         let backButton = UIBarButtonItem()
-        backButton.title = "Назад"
+        backButton.title = "Back".localized
         return backButton
     }()
     
@@ -29,7 +29,7 @@ class MediaViewController: UIViewController {
         songNameLabel.textColor = .black
         songNameLabel.backgroundColor = .systemGray3
         songNameLabel.textAlignment = .center
-        songNameLabel.text = "Имя песни"
+        songNameLabel.text = "The name of the song".localized
         songNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return songNameLabel
     }()
@@ -81,7 +81,7 @@ class MediaViewController: UIViewController {
     }()
     
     private lazy var voiceRecorderButton: CustomButton = {
-        let voiceRecorderButton = CustomButton(titleText: "Диктофон", titleColor: .red, backgroundColor: .gray, tapAction: buttomVoiceRecorderAction)
+        let voiceRecorderButton = CustomButton(titleText: "Voice recorder".localized, titleColor: .red, backgroundColor: .gray, tapAction: buttomVoiceRecorderAction)
         return voiceRecorderButton
     }()
     

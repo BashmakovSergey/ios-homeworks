@@ -5,7 +5,7 @@ final class PhotosTableViewCell: UITableViewCell {
     var labelPhotos: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Photos"
+        label.text = "Photos".localized
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textColor = .black
         return label
@@ -45,7 +45,7 @@ final class PhotosTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             labelPhotos.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             labelPhotos.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            labelPhotos.widthAnchor.constraint(equalToConstant: 80),
+            labelPhotos.widthAnchor.constraint(equalToConstant: 190),
             labelPhotos.heightAnchor.constraint(equalToConstant: 40),
 
             arrowImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),

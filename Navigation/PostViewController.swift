@@ -26,7 +26,7 @@ final class PostViewController: UIViewController {
         self.view.backgroundColor = .darkGray
         navigationItem.title = post?.title
         
-        let barButtonItem = UIBarButtonItem(title: "Инфо", style: .plain, target: self, action: #selector(openInfo))
+        let barButtonItem = UIBarButtonItem(title: "Info".localized, style: .plain, target: self, action: #selector(openInfo))
         navigationItem.rightBarButtonItem = barButtonItem
     }
     
