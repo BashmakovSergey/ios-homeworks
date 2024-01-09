@@ -2,7 +2,7 @@ import UIKit
 
 final class ProfileHeaderView: UITableViewHeaderFooterView {
     
-    private var statusText: String = "Установить статус"
+    private var statusText: String = "Set the status".localized
     
     var returnAvatarButton = UIButton()
     var avatarBackground = UIView()
@@ -21,7 +21,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     
     let fullNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Имя профиля"
+        label.text = "Profile Name".localized
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +30,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     
      let statusLabel: UILabel = {
         let label = UILabel()
-        label.text = "В ожидании чего-то"
+         label.text = "Waiting for something".localized
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +46,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Установить новый статус"
+        textField.placeholder = "Set a new status".localized
         textField.textAlignment = .center
         textField.keyboardType = UIKeyboardType.default
         textField.returnKeyType = UIReturnKeyType.done
@@ -58,7 +58,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private let setStatusButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Установить статус", for: .normal)
+        button.setTitle("Set the status".localized, for: .normal)
         button.backgroundColor = .systemBlue
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 4.0

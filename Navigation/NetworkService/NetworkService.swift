@@ -7,25 +7,25 @@ struct NetworkService {
             let task = session.dataTask(with: url) {data, response, error in
 
                 if let error {
-                    print("Ошибка: \(error.localizedDescription)")
+                    print("Error:".localized + " \(error.localizedDescription)")
                     return
                 }
 
                 if let httpResponse = response as? HTTPURLResponse {
-                    print("Код ответа: \(httpResponse.statusCode)")
-                    print("Заголовки: \(httpResponse.allHeaderFields)")
+                    print("Response code:".localized + " \(httpResponse.statusCode)")
+                    print("Headlines:".localized + " \(httpResponse.allHeaderFields)")
                 }
 
                 guard let data else {
-                    print("Нет данных!")
+                    print("No data available!".localized)
                     return
                 }
                 
                 do {
                     let json = try JSONSerialization.jsonObject(with: data)
-                    print("Данные получены: \(json)")
+                    print("Data received:".localized + " \(json)")
                 } catch {
-                    print("Ошибка обработки JSON: \(error.localizedDescription)")
+                    print("JSON processing error:".localized + " \(error.localizedDescription)")
                 }
             }
         task.resume()
@@ -37,7 +37,7 @@ struct NetworkService {
         let task = session.dataTask(with: url) {data, response, error in
             
             if let error {
-                print("Ошибка: \(error.localizedDescription)")
+                print("Error:".localized + " \(error.localizedDescription)")
                 completion(.failure(.unowned))
             }
             
@@ -50,7 +50,7 @@ struct NetworkService {
                             guard let title = jsonDictionary["title"] as? String else { return }
                             completion(.success(title))
                         } catch {
-                            print("Ошибка обработки JSON: \(error.localizedDescription)")
+                            print("JSON processing error:".localized + " \(error.localizedDescription)")
                             completion(.failure(.decodeError))
                         }
                     }
@@ -89,7 +89,7 @@ struct NetworkService {
                 case 500:
                     completion(.failure(.serverError))
                 default:
-                    assertionFailure("unowned status code = \(response.statusCode)")
+                    assertionFailure("Unowned status code".localized + " = \(response.statusCode)")
                     completion(.failure(.unowned))
                 }
             }

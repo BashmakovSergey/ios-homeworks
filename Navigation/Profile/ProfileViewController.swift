@@ -41,7 +41,7 @@ final class ProfileViewController: UIViewController {
         ProfileViewController.postTableView.dataSource = self
         ProfileViewController.postTableView.delegate = self
         setupConstraint()
-        self.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
+        self.tabBarItem = UITabBarItem(title: "Profile".localized, image: UIImage(systemName: "person.circle"), tag: 1)
     }
      
     private func setupConstraint() {

@@ -48,7 +48,7 @@ final class LogInViewController: UIViewController {
             button.setBackgroundImage(pixel.image(alpha: 0.4), for: .disabled)
         }
 
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Login".localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(nil, action: #selector(touchLoginButton), for: .touchUpInside)
         button.layer.cornerRadius = 12
@@ -78,7 +78,7 @@ final class LogInViewController: UIViewController {
         let password = UITextField()
         password.translatesAutoresizingMaskIntoConstraints = false
         password.leftViewMode = .always
-        password.placeholder = "Пароль: 123456"
+        password.placeholder = "Password".localized + ": 123456"
         password.layer.borderColor = UIColor.lightGray.cgColor
         password.layer.borderWidth = 0.25
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: password.frame.height))
@@ -92,7 +92,7 @@ final class LogInViewController: UIViewController {
     }()
     
     private lazy var signUpButton: CustomButton = {
-        let button = CustomButton(titleText: "Зарегистрироваться", titleColor: .white, backgroundColor: .systemBlue, tapAction: signUpAction)
+        let button = CustomButton(vkTitleText: "Register".localized, titleColor: .white, backgroundColor: .systemBlue, tapAction: signUpAction)
         return button
     }()
     
@@ -185,21 +185,21 @@ final class LogInViewController: UIViewController {
         var errorMassage: String
         switch error {
             case .userNotFound:
-                errorMassage = "Такой пользователь не существует"
+            errorMassage = "There is no such user".localized
             case .wrongPassword:
-                errorMassage = "Неправильно введен пароль"
+            errorMassage = "The password was entered incorrectly".localized
             case .userNotFoundAndWrongPassword:
-                errorMassage = "Неправильно введен логин и пароль"
+            errorMassage = "The username and password were entered incorrectly".localized
             case .tooStrongPassword:
-                errorMassage = "Пароль слижком сложный и долго подбирать"
+            errorMassage = "The password is too complicated and takes a long time to select".localized
             case .suchUserAlreadyExists:
-                errorMassage = "Такой пользователь уже зарегестрирован"
+            errorMassage = "Such a user has already been registered".localized
             case .authorized:
-                errorMassage = "Успешно зарегестрирован новый пользователь \(loginField.text ?? "")"
+            errorMassage = "A new user has been successfully registered".localized + " \(loginField.text ?? "")"
             case .successful:
-                errorMassage = "Успешный вход"
+            errorMassage = "Successful login".localized
         }
-        let alertController = UIAlertController(title: "Предупреждение", message: errorMassage, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Warning".localized, message: errorMassage, preferredStyle: .alert)
         let actionAlert = UIAlertAction(title: "ОК", style: .default, handler: nil)
         alertController.addAction(actionAlert)
         self.present(alertController, animated: true)
@@ -234,12 +234,12 @@ final class LogInViewController: UIViewController {
     }
     
     func convenientNotification() {
-        let alertController = UIAlertController(title: "Предупреждение", message: "Для удобства можно установить автоматически правильные Логин и Пароль", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Warning".localized, message: "For convenience, you can set the correct Username and Password automatically".localized, preferredStyle: .alert)
         let actionAlertYes = UIAlertAction(title: "ОК", style: .default, handler: { action in
             self.loginField.text = "test@test.test"
             self.passwordField.text = "123456"
         })
-        let actionAlertNo = UIAlertAction(title: "Нет", style: .default, handler: nil)
+        let actionAlertNo = UIAlertAction(title: "No".localized, style: .default, handler: nil)
         alertController.addAction(actionAlertYes)
         alertController.addAction(actionAlertNo)
         self.present(alertController, animated: true)

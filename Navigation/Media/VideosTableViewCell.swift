@@ -8,7 +8,7 @@ class VideosTableViewCell: UITableViewCell {
         let videoLabel = UILabel()
         videoLabel.font = UIFont.boldSystemFont(ofSize: 20)
         videoLabel.textColor = .black
-        videoLabel.text = "Видео"
+        videoLabel.text = "Video".localized
         videoLabel.translatesAutoresizingMaskIntoConstraints = false
         return videoLabel
     }()

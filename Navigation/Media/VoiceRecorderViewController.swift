@@ -10,17 +10,17 @@ class VoiceRecorderViewController: UIViewController, AVAudioRecorderDelegate, AV
     
     let backButton: UIBarButtonItem = {
         let backButton = UIBarButtonItem()
-        backButton.title = "Назад"
+        backButton.title = "Back".localized
         return backButton
     }()
     
     private lazy var recordButton: CustomButton = {
-        let recordButton = CustomButton(titleText: "Запись", titleColor: .white, backgroundColor: .red, tapAction: self.recordTapped)
+        let recordButton = CustomButton(titleText: "Recording".localized, titleColor: .white, backgroundColor: .red, tapAction: self.recordTapped)
         return recordButton
     }()
     
     private lazy var playRecordButton: CustomButton = {
-        let playRecordButton = CustomButton(titleText: "Воспроизвести", titleColor: .black, backgroundColor: .white, tapAction: self.playRecord)
+        let playRecordButton = CustomButton(titleText: "Play".localized, titleColor: .black, backgroundColor: .white, tapAction: self.playRecord)
         return playRecordButton
     }()
     

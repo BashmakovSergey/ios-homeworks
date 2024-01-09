@@ -15,6 +15,9 @@
 		591743AF2A545A1E002D6907 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591743AE2A545A1E002D6907 /* PostViewController.swift */; };
 		591743B12A545A25002D6907 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591743B02A545A25002D6907 /* ProfileViewController.swift */; };
 		591743B92A5590CC002D6907 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591743B82A5590CC002D6907 /* InfoViewController.swift */; };
+		591788222B49EB8F00A94E88 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 591788212B49EB8F00A94E88 /* InfoPlist.strings */; };
+		5917882F2B4C6CB200A94E88 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5917882D2B4C6CB200A94E88 /* Localizable.strings */; };
+		591788322B4C6EB700A94E88 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 591788342B4C6EB700A94E88 /* Localizable.stringsdict */; };
 		5918D7592AF7F4B2004D4C31 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5918D7582AF7F4B2004D4C31 /* FirebaseAuth */; };
 		5918D75B2AF7F4B2004D4C31 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5918D75A2AF7F4B2004D4C31 /* FirebaseFirestore */; };
 		5918D75D2AF7F4B2004D4C31 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5918D75C2AF7F4B2004D4C31 /* FirebaseFirestoreSwift */; };
@@ -141,6 +144,13 @@
 		591743AE2A545A1E002D6907 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		591743B02A545A25002D6907 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		591743B82A5590CC002D6907 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		591788212B49EB8F00A94E88 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		591788232B4C383800A94E88 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		591788242B4C383800A94E88 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		591788252B4C383800A94E88 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5917882E2B4C6CB200A94E88 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		591788332B4C6EB700A94E88 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		591788352B4C742800A94E88 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5918D75E2AF7F587004D4C31 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5921E4422AE672A200F63A98 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		5921E4442AE6754400F63A98 /* happyBug.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = happyBug.mp3; sourceTree = "<group>"; };
@@ -296,6 +306,9 @@
 				5917439F2A5453F2002D6907 /* Assets.xcassets */,
 				591743A12A5453F2002D6907 /* LaunchScreen.storyboard */,
 				591743A42A5453F2002D6907 /* Info.plist */,
+				591788212B49EB8F00A94E88 /* InfoPlist.strings */,
+				5917882D2B4C6CB200A94E88 /* Localizable.strings */,
+				591788342B4C6EB700A94E88 /* Localizable.stringsdict */,
 				5918D75E2AF7F587004D4C31 /* GoogleService-Info.plist */,
 				5921E43C2AE44A4A00F63A98 /* Media */,
 				594A7D102AEE59AF00543959 /* NetworkService */,
@@ -606,7 +619,7 @@
 		5917438B2A5453F0002D6907 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
@@ -626,11 +639,12 @@
 			};
 			buildConfigurationList = 5917438E2A5453F0002D6907 /* Build configuration list for PBXProject "Navigation" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 5917438A2A5453F0002D6907;
 			packageReferences = (
@@ -659,11 +673,14 @@
 				5921E4452AE6754400F63A98 /* happyBug.mp3 in Resources */,
 				5921E4492AE684F000F63A98 /* darkWood.mp3 in Resources */,
 				5921E44E2AE6856600F63A98 /* morningDay.mp3 in Resources */,
+				591788222B49EB8F00A94E88 /* InfoPlist.strings in Resources */,
 				591743A32A5453F2002D6907 /* LaunchScreen.storyboard in Resources */,
 				5921E45D2AE810AF00F63A98 /* nono.mp4 in Resources */,
 				5918D75F2AF7F587004D4C31 /* GoogleService-Info.plist in Resources */,
 				5921E45B2AE810AF00F63A98 /* rabbit.mp4 in Resources */,
+				591788322B4C6EB700A94E88 /* Localizable.stringsdict in Resources */,
 				591743A02A5453F2002D6907 /* Assets.xcassets in Resources */,
+				5917882F2B4C6CB200A94E88 /* Localizable.strings in Resources */,
 				5921E4572AE8109A00F63A98 /* moments.mp4 in Resources */,
 				5921E44D2AE6856600F63A98 /* loFiChillHop.mp3 in Resources */,
 				5921E44F2AE6856600F63A98 /* queen.mp3 in Resources */,
@@ -810,14 +827,33 @@
 			isa = PBXVariantGroup;
 			children = (
 				591743A22A5453F2002D6907 /* Base */,
+				591788232B4C383800A94E88 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5917882D2B4C6CB200A94E88 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5917882E2B4C6CB200A94E88 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		591788342B4C6EB700A94E88 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				591788332B4C6EB700A94E88 /* ru */,
+				591788352B4C742800A94E88 /* en */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 		594692942AFFA82600870EEC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				594692952AFFA82600870EEC /* Base */,
+				591788242B4C383800A94E88 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -826,6 +862,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				597519BD2B05461400C215C0 /* Base */,
+				591788252B4C383800A94E88 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -837,6 +874,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -898,6 +936,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -960,6 +999,7 @@
 				DEVELOPMENT_TEAM = W5SCR2QZXP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This feature need for work with Location in this App";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -988,6 +1028,7 @@
 				DEVELOPMENT_TEAM = W5SCR2QZXP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This feature need for work with Location in this App";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

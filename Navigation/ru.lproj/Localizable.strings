@@ -1,0 +1,77 @@
+"Default Configuration" = "Конфигурация по умолчанию";
+
+"Navigation" = "Навигация";
+
+"Back" = "Назад";
+"Cancel" = "Отмена";
+"Create" = "Создать";
+"The name of the song" = "Имя песни";
+"Voice recorder" = "Диктофон";
+"Video" = "Видео";
+"Recording" = "Запись";
+"Play" = "Воспроизвести";
+"Profile" = "Профиль";
+"Photos" = "Фотографии";
+"Photo Gallery" = "Фотогалерея";
+"Login" = "Войти";
+"Password" = "Пароль";
+"Register" = "Зарегистрироваться";
+"No" = "Нет";
+"Favorites" = "Избранное";
+"Search" = "Поиск";
+"Delete" = "Удалить";
+"Feed" = "Лента";
+"Info" = "Инфо";
+"To see" = "Посмотреть";
+
+"No data available!" = "Нет данных!";
+"Error:" = "Ошибка:";
+"Response code:" = "Код ответа:";
+"Headlines:" = "Заголовки:";
+"Data received:" = "Данные получены:";
+"JSON processing error:" = "Ошибка обработки JSON:";
+"Unowned status code" = "Код статуса не используется";
+
+"Set the status" = "Установить статус";
+"Profile Name" = "Имя профиля";
+"Waiting for something" = "В ожидании чего-то";
+"Set a new status" = "Установить новый статус";
+"Set the status" = "Установить статус";
+"Likes" = "Лайки";
+"Views" = "Просмотры";
+"sec" = "сек";
+"Process time" = "Время обработки";
+"seconds" = "секунд";
+"My post" = "Мой пост";
+"The first post" = "Первый пост";
+"Media" = "Медиа";
+"Map" = "Карта";
+"Enter the secret word" = "Введите секретное слово";
+"Checking the secret word" = "Проверка секретного слова";
+"You guessed the secret word" = "Угадал секретное слово";
+"You didn't guess the secret word" = "Не угадал секретное слово";
+"Waiting is completed" = "Ожидание выполнено";
+"Set a route" = "Проложить маршрут";
+"New point" = "Новая метка";
+"Label name" = "Название метки";
+"Favorites posts" = "Избранные посты";
+"Enter the author" = "Введите автора";
+"Sorting posts by author" = "Сортировка постов по автору";
+"Author's name" = "Имя автора";
+
+"There is no such user" = "Такой пользователь не существует";
+"The password was entered incorrectly" = "Неправильно введен пароль";
+"The username and password were entered incorrectly" = "Неправильно введен логин и пароль";
+"The password is too complicated and takes a long time to select" = "Пароль слижком сложный и долго подбирать";
+"Such a user has already been registered" = "Такой пользователь уже зарегестрирован";
+"A new user has been successfully registered" = "Успешно зарегестрирован новый пользователь";
+"For convenience, you can set the correct Username and Password automatically" = "Для удобства можно установить автоматически правильные Логин и Пароль";
+"The period of the planet Tatooine's revolution around its star" = "Период обращения планеты Татуин вокруг своей звезды";
+"Information first" = "Информация первая";
+"The second information, the message" = "Информация вторая, сообщение";
+
+"Successful login" = "Успешный вход";
+"Warning" = "Предупреждение";
+"Left" = "Левый";
+"Right" = "Правый";
+"Pressed the button" = "Нажал на кнопку";

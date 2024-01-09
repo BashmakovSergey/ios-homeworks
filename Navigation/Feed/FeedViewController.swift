@@ -3,7 +3,7 @@ import StorageService
 
 final class FeedViewController: UIViewController {
 
-    var post = PostFeed(title: "Мой пост")
+    var post = PostFeed(title: "My post".localized)
     let feedModel: FeedViewModelProtocol
     let coordinator: FeedCoordinator
     
@@ -39,13 +39,13 @@ final class FeedViewController: UIViewController {
         stackView.distribution = .fillEqually
         stackView.spacing = 10
     
-        var firstButton = CustomButton(titleText: "Первый пост", titleColor: .black, backgroundColor: .systemPurple, tapAction: buttonAction)
+        var firstButton = CustomButton(titleText: "The first post".localized, titleColor: .black, backgroundColor: .systemPurple, tapAction: buttonAction)
         stackView.addArrangedSubview(firstButton)
         
-        var secondButton = CustomButton(titleText: "Медиа", titleColor: .black, backgroundColor: .systemIndigo, tapAction: buttomMediaAction)
+        var secondButton = CustomButton(titleText: "Media".localized, titleColor: .black, backgroundColor: .systemIndigo, tapAction: buttomMediaAction)
         stackView.addArrangedSubview(secondButton)
         
-        var thirdButton = CustomButton(titleText: "Карта", titleColor: .black, backgroundColor: .lightGray, tapAction: buttonMapAction)
+        var thirdButton = CustomButton(titleText: "Map".localized, titleColor: .black, backgroundColor: .lightGray, tapAction: buttonMapAction)
         stackView.addArrangedSubview(thirdButton)
         
         return stackView
@@ -60,7 +60,7 @@ final class FeedViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Введите секретное слово: \(feedModel.returnCorrectSecretWord())"
+        textField.placeholder = "Enter the secret word".localized + ": \(feedModel.returnCorrectSecretWord())"
         textField.textAlignment = .center
         textField.keyboardType = UIKeyboardType.default
         textField.returnKeyType = UIReturnKeyType.done
@@ -71,7 +71,7 @@ final class FeedViewController: UIViewController {
     }()
     
     private lazy var checkGuessButton: CustomButton = {
-        var button = CustomButton(titleText: "Проверка секретного слова", titleColor: .white, backgroundColor: .gray, tapAction: self.actionSetStatusButtonPressed)
+        var button = CustomButton(titleText: "Checking the secret word".localized, titleColor: .white, backgroundColor: .gray, tapAction: self.actionSetStatusButtonPressed)
         button.setTitleColor(.black, for: .selected)
         button.setTitleColor(.black, for: .highlighted)
         button.layer.cornerRadius = 10
@@ -143,14 +143,14 @@ final class FeedViewController: UIViewController {
     }
     
     @objc func trueSelector() {
-        resultLabelOfSecretWord.text = "Угадал секретное слово"
+        resultLabelOfSecretWord.text = "You guessed the secret word".localized
         resultLabelOfSecretWord.textColor = .green
         resultLabelOfSecretWord.layer.borderColor = UIColor.green.cgColor
         resultLabelOfSecretWord.alpha = 1
     }
 
     @objc func falseSelector() {
-        resultLabelOfSecretWord.text = "Не угадал секретное слово"
+        resultLabelOfSecretWord.text = "You didn't guess the secret word".localized
         resultLabelOfSecretWord.textColor = .red
         resultLabelOfSecretWord.layer.borderColor = UIColor.red.cgColor
         resultLabelOfSecretWord.alpha = 1
