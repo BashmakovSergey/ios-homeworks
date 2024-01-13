@@ -12,7 +12,7 @@ final class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = ColorPalette.textColor
         label.numberOfLines = 2
         return label
     }()
@@ -38,7 +38,7 @@ final class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 16)
-        label.textColor = .black
+        label.textColor = ColorPalette.textColor
         return label
     }()
     
@@ -46,17 +46,16 @@ final class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 16)
-        label.textColor = .black
+        label.textColor = ColorPalette.textColor
         return label
     }()
     
     var favoriteChecker: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = ColorPalette.whiteBackgroundColor
         view.layer.cornerRadius = 15
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.black.cgColor
         return view
     }()
     
@@ -66,6 +65,14 @@ final class PostTableViewCell: UITableViewCell {
         setupConstraints()
         setRecognizer()
         self.selectionStyle = .default
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *) {
+            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+                favoriteChecker.layer.borderColor = ColorPalette.blackColor.cgColor
+            }
+        }
     }
     
     required init?(coder: NSCoder) {

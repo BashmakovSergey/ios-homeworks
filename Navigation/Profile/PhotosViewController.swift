@@ -20,7 +20,7 @@ final class PhotosViewController: UIViewController {
     lazy var photosCollectionView: UICollectionView = {
         let photos = UICollectionView(frame: .zero, collectionViewLayout: layout)
         photos.translatesAutoresizingMaskIntoConstraints = false
-        photos.backgroundColor = .white
+        photos.backgroundColor = ColorPalette.whiteBackgroundColor
         photos.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: photoIdent)
         return photos
     }()
