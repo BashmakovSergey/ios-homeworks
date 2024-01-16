@@ -65,7 +65,7 @@ final class LogInViewController: UIViewController {
         login.leftViewMode = .always
         login.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: login.frame.height))
         login.keyboardType = .emailAddress
-        login.textColor = .black
+        login.textColor = ColorPalette.textColor
         login.font = UIFont.systemFont(ofSize: 16)
         login.autocapitalizationType = .none
         login.returnKeyType = .done
@@ -82,7 +82,7 @@ final class LogInViewController: UIViewController {
         password.layer.borderColor = UIColor.lightGray.cgColor
         password.layer.borderWidth = 0.25
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: password.frame.height))
-        password.textColor = .black
+        password.textColor = ColorPalette.textColor
         password.font = UIFont.systemFont(ofSize: 16)
         password.autocapitalizationType = .none
         password.returnKeyType = .done
@@ -133,7 +133,7 @@ final class LogInViewController: UIViewController {
         loginStackView.addArrangedSubview(loginField)
         loginStackView.addArrangedSubview(passwordField)
         convenientNotification()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = ColorPalette.whiteBackgroundColor
         navigationController?.navigationBar.isHidden = true
         loginField.delegate = self
         passwordField.delegate = self

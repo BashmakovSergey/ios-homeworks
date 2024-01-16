@@ -39,13 +39,13 @@ final class FeedViewController: UIViewController {
         stackView.distribution = .fillEqually
         stackView.spacing = 10
     
-        var firstButton = CustomButton(titleText: "The first post".localized, titleColor: .black, backgroundColor: .systemPurple, tapAction: buttonAction)
+        var firstButton = CustomButton(titleText: "The first post".localized, titleColor: UIColor(named: "navigationTextColor") ?? .black, backgroundColor: .systemPurple, tapAction: buttonAction)
         stackView.addArrangedSubview(firstButton)
         
-        var secondButton = CustomButton(titleText: "Media".localized, titleColor: .black, backgroundColor: .systemIndigo, tapAction: buttomMediaAction)
+        var secondButton = CustomButton(titleText: "Media".localized, titleColor: ColorPalette.textColor, backgroundColor: .systemIndigo, tapAction: buttomMediaAction)
         stackView.addArrangedSubview(secondButton)
         
-        var thirdButton = CustomButton(titleText: "Map".localized, titleColor: .black, backgroundColor: .lightGray, tapAction: buttonMapAction)
+        var thirdButton = CustomButton(titleText: "Map".localized, titleColor: ColorPalette.textColor, backgroundColor: .lightGray, tapAction: buttonMapAction)
         stackView.addArrangedSubview(thirdButton)
         
         return stackView
@@ -53,12 +53,11 @@ final class FeedViewController: UIViewController {
     
     private lazy var checkSecretWordTextField: UITextField = {
         var textField = UITextField()
-        textField.backgroundColor = .white
+        textField.backgroundColor = ColorPalette.whiteBackgroundColor
         textField.layer.cornerRadius = 12.0
         textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.black.cgColor
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        textField.textColor = .black
+        textField.textColor = UIColor(named: "navigationTextColor")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Enter the secret word".localized + ": \(feedModel.returnCorrectSecretWord())"
         textField.textAlignment = .center
@@ -71,9 +70,9 @@ final class FeedViewController: UIViewController {
     }()
     
     private lazy var checkGuessButton: CustomButton = {
-        var button = CustomButton(titleText: "Checking the secret word".localized, titleColor: .white, backgroundColor: .gray, tapAction: self.actionSetStatusButtonPressed)
-        button.setTitleColor(.black, for: .selected)
-        button.setTitleColor(.black, for: .highlighted)
+        var button = CustomButton(titleText: "Checking the secret word".localized, titleColor: UIColor(named: "navigationTextColor") ?? .white, backgroundColor: .gray, tapAction: self.actionSetStatusButtonPressed)
+        button.setTitleColor(UIColor(named: "navigationTextColor"), for: .selected)
+        button.setTitleColor(UIColor(named: "navigationTextColor"), for: .highlighted)
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.white.cgColor
@@ -83,7 +82,7 @@ final class FeedViewController: UIViewController {
     
     private lazy var resultLabelOfSecretWord: UILabel = {
         let resultLabel = UILabel()
-        resultLabel.font = UIFont.boldSystemFont(ofSize: 10)
+        resultLabel.font = UIFont.boldSystemFont(ofSize: 15)
         resultLabel.numberOfLines = 0
         resultLabel.textColor = .black
         resultLabel.backgroundColor = .systemGray3
@@ -91,7 +90,6 @@ final class FeedViewController: UIViewController {
         resultLabel.alpha = 0
         resultLabel.layer.cornerRadius = 20
         resultLabel.layer.borderWidth = 1
-        resultLabel.layer.borderColor = UIColor.black.cgColor
         resultLabel.layer.masksToBounds = true
         resultLabel.translatesAutoresizingMaskIntoConstraints = false
         return resultLabel
@@ -117,12 +115,11 @@ final class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
+        view.backgroundColor = ColorPalette.whiteBackgroundColor
         checkSecretWordTextField.delegate = self
         view.addSubview(feedScrollView)
         feedScrollView.addSubview(contentView)
         contentView.addSubviews(stackView, checkSecretWordTextField, checkGuessButton, resultLabelOfSecretWord)
-        self.tabBarController?.tabBar.backgroundColor = .systemBackground
         setupContraints()
     }
     
@@ -132,6 +129,15 @@ final class FeedViewController: UIViewController {
         let nc = NotificationCenter.default
         nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *) {
+            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+                checkSecretWordTextField.layer.borderColor = ColorPalette.blackColor.cgColor
+                resultLabelOfSecretWord.layer.borderColor = ColorPalette.blackColor.cgColor
+            }
+        }
     }
     
     private func actionSetStatusButtonPressed() {
@@ -144,7 +150,7 @@ final class FeedViewController: UIViewController {
     
     @objc func trueSelector() {
         resultLabelOfSecretWord.text = "You guessed the secret word".localized
-        resultLabelOfSecretWord.textColor = .green
+        resultLabelOfSecretWord.textColor = UIColor(named: "navigationResultTextColor")
         resultLabelOfSecretWord.layer.borderColor = UIColor.green.cgColor
         resultLabelOfSecretWord.alpha = 1
     }

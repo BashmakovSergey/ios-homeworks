@@ -12,7 +12,6 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         let imageView = UIImageView(image: UIImage(named: "avatar"))
         imageView.backgroundColor = .green
         imageView.layer.borderWidth = 3.0
-        imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.cornerRadius = 60.0
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +22,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.text = "Profile Name".localized
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = UIColor(named: "navigationTextColor")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -39,12 +38,11 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private var statusTextField: UITextField = {
         var textField = UITextField()
-        textField.backgroundColor = .white
+        textField.backgroundColor = ColorPalette.whiteBackgroundColor
         textField.layer.cornerRadius = 12.0
         textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.black.cgColor
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        textField.textColor = .black
+        textField.textColor = ColorPalette.textColor
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Set a new status".localized
         textField.textAlignment = .center
@@ -65,7 +63,6 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
         button.layer.shadowOpacity = 0.7
         button.layer.shadowRadius = 4.0
-        button.layer.shadowColor = UIColor.black.cgColor
         return button
     }()
     
@@ -75,6 +72,16 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         setupConstrain()
         addTarget()
         statusTextField.delegate = self
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *) {
+            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+                avatarImageView.layer.borderColor = ColorPalette.blackColor.cgColor
+                setStatusButton.layer.shadowColor = ColorPalette.blackColor.cgColor
+                statusTextField.layer.borderColor = ColorPalette.blackColor.cgColor
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -117,7 +124,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         returnAvatarButton.backgroundColor = .clear
         returnAvatarButton.contentMode = .scaleToFill
         returnAvatarButton.setImage(UIImage(systemName: "xmark", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22))?.withTintColor(.black, renderingMode: .automatic), for: .normal)
-        returnAvatarButton.tintColor = .black
+        returnAvatarButton.tintColor = ColorPalette.blackColor
         returnAvatarButton.addTarget(self, action: #selector(returnAvatarToOrigin), for: .touchUpInside)
         
         // translucent background for the modal animation mode

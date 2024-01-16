@@ -34,7 +34,7 @@ final class ProfileViewController: UIViewController {
         #if DEBUG
         view.backgroundColor = .red
         #else
-        view.backgroundColor = .lightGray
+        view.backgroundColor = ColorPalette.whiteBackgroundColor
         #endif
         
         view.addSubview(ProfileViewController.postTableView)

@@ -8,7 +8,7 @@ class FavoriteCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = UIColor(named: "navigationTextColor")
         label.numberOfLines = 2
         return label
     }()
@@ -25,7 +25,7 @@ class FavoriteCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .systemGray
+        label.textColor = UIColor(named: "navigationTextColor")
         label.numberOfLines = 0
         return label
     }()

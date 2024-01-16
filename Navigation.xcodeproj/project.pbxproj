@@ -39,6 +39,7 @@
 		5921E45D2AE810AF00F63A98 /* nono.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5921E45A2AE810AF00F63A98 /* nono.mp4 */; };
 		5921E45F2AE824FD00F63A98 /* VoiceRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5921E45E2AE824FD00F63A98 /* VoiceRecorderViewController.swift */; };
 		592BA9C02B248A1E0075878C /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592BA9BF2B248A1E0075878C /* CoreDataService.swift */; };
+		592D5AC62B52F52A00B9029D /* ExtensionUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592D5AC52B52F52A00B9029D /* ExtensionUIColor.swift */; };
 		593F3F982ABB7E7C0014FA45 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F3F972ABB7E7C0014FA45 /* CustomButton.swift */; };
 		594006272ABE0FE30004C717 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594006262ABE0FE30004C717 /* FeedViewModel.swift */; };
 		5946928A2AFFA82400870EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594692892AFFA82400870EEC /* AppDelegate.swift */; };
@@ -167,6 +168,7 @@
 		5921E45A2AE810AF00F63A98 /* nono.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = nono.mp4; sourceTree = "<group>"; };
 		5921E45E2AE824FD00F63A98 /* VoiceRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorderViewController.swift; sourceTree = "<group>"; };
 		592BA9BF2B248A1E0075878C /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		592D5AC52B52F52A00B9029D /* ExtensionUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIColor.swift; sourceTree = "<group>"; };
 		593F3F972ABB7E7C0014FA45 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		594006262ABE0FE30004C717 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		594692872AFFA82400870EEC /* FileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -509,6 +511,7 @@
 				5946F0B72A75A8F600D81BC8 /* ExtentionUIImage.swift */,
 				5946F0B92A75A98E00D81BC8 /* ExtensionUIView.swift */,
 				5970FBA42AE27F7200EC9734 /* ExtensionString.swift */,
+				592D5AC52B52F52A00B9029D /* ExtensionUIColor.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -621,7 +624,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					591743922A5453F0002D6907 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -733,6 +736,7 @@
 				598525B92AA338B300E04060 /* User.swift in Sources */,
 				598FDDD92B4185D000465633 /* MapViewController.swift in Sources */,
 				597795E22AF58C5900F8739C /* InfoTableViewCell.swift in Sources */,
+				592D5AC62B52F52A00B9029D /* ExtensionUIColor.swift in Sources */,
 				5957B0042AD91BDE001A2F11 /* SecretWord.swift in Sources */,
 				5921E4522AE685D600F63A98 /* MediaModel.swift in Sources */,
 				59EA50F42B1BB44500B20D6C /* FavoriteViewController.swift in Sources */,
@@ -874,6 +878,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -936,6 +941,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

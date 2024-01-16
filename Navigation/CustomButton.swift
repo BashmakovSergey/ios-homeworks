@@ -40,7 +40,7 @@ final class CustomButton: UIButton {
         self.someAction = tapAction
         translatesAutoresizingMaskIntoConstraints = false
         setTitle(title, for: .normal)
-        backgroundColor = .white
+        backgroundColor = ColorPalette.whiteBackgroundColor
         setTitleColor(.tintColor, for: .normal)
         addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         layer.cornerRadius = 10
@@ -52,7 +52,7 @@ final class CustomButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
         addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         layer.cornerRadius = 5
-        backgroundColor = .white
+        backgroundColor = ColorPalette.whiteBackgroundColor
         guard let imageUI = UIImage(systemName: image) else { return }
         setImage(imageUI.imageWith(newSize: CGSize(width: 25, height: 30)).withTintColor(.lightGray), for: .normal)
     }
