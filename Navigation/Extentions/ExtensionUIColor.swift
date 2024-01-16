@@ -1,12 +1,8 @@
 import UIKit
 
 public struct ColorPalette {
-    
     static var textColor = UIColor.defaultColor(lightMode: .black, darkMode: .white)
     static var blackColor = UIColor.defaultColor(lightMode: .black, darkMode: .white)
-    
-//    static var labelColor = UIColor.defaultColor(lightMode: .systemGray6, darkMode: .black)
-
     static var resultTextColor = UIColor.defaultColor(lightMode: .green, darkMode: .systemGreen)
     static var whiteBackgroundColor = UIColor.defaultColor(lightMode: .white, darkMode: .black)
     static var lightGrayBackgroundColor = UIColor.defaultColor(lightMode: .lightGray, darkMode: .darkGray)

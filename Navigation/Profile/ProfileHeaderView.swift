@@ -22,7 +22,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.text = "Profile Name".localized
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = ColorPalette.textColor
+        label.textColor = UIColor(named: "navigationTextColor")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

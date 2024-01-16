@@ -39,7 +39,7 @@ final class FeedViewController: UIViewController {
         stackView.distribution = .fillEqually
         stackView.spacing = 10
     
-        var firstButton = CustomButton(titleText: "The first post".localized, titleColor: ColorPalette.textColor, backgroundColor: .systemPurple, tapAction: buttonAction)
+        var firstButton = CustomButton(titleText: "The first post".localized, titleColor: UIColor(named: "navigationTextColor") ?? .black, backgroundColor: .systemPurple, tapAction: buttonAction)
         stackView.addArrangedSubview(firstButton)
         
         var secondButton = CustomButton(titleText: "Media".localized, titleColor: ColorPalette.textColor, backgroundColor: .systemIndigo, tapAction: buttomMediaAction)
@@ -57,7 +57,7 @@ final class FeedViewController: UIViewController {
         textField.layer.cornerRadius = 12.0
         textField.layer.borderWidth = 1.0
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        textField.textColor = ColorPalette.textColor
+        textField.textColor = UIColor(named: "navigationTextColor")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Enter the secret word".localized + ": \(feedModel.returnCorrectSecretWord())"
         textField.textAlignment = .center
@@ -70,9 +70,9 @@ final class FeedViewController: UIViewController {
     }()
     
     private lazy var checkGuessButton: CustomButton = {
-        var button = CustomButton(titleText: "Checking the secret word".localized, titleColor: .white, backgroundColor: .gray, tapAction: self.actionSetStatusButtonPressed)
-        button.setTitleColor(.black, for: .selected)
-        button.setTitleColor(.black, for: .highlighted)
+        var button = CustomButton(titleText: "Checking the secret word".localized, titleColor: UIColor(named: "navigationTextColor") ?? .white, backgroundColor: .gray, tapAction: self.actionSetStatusButtonPressed)
+        button.setTitleColor(UIColor(named: "navigationTextColor"), for: .selected)
+        button.setTitleColor(UIColor(named: "navigationTextColor"), for: .highlighted)
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.white.cgColor
@@ -150,7 +150,7 @@ final class FeedViewController: UIViewController {
     
     @objc func trueSelector() {
         resultLabelOfSecretWord.text = "You guessed the secret word".localized
-        resultLabelOfSecretWord.textColor = ColorPalette.resultTextColor
+        resultLabelOfSecretWord.textColor = UIColor(named: "navigationResultTextColor")
         resultLabelOfSecretWord.layer.borderColor = UIColor.green.cgColor
         resultLabelOfSecretWord.alpha = 1
     }

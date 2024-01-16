@@ -14,7 +14,7 @@ final class MainCoordinator: Coordinator {
     }
     
     private func setTabBarController(){
-        mainTabBarController.tabBar.backgroundColor = ColorPalette.lightGrayBackgroundColor
+        mainTabBarController.tabBar.backgroundColor = UIColor(named: "navigationLightGrayBackgroundColor")
         addControllersToTabBar()
     }
     
