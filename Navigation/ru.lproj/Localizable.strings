@@ -1,5 +1,3 @@
-"Default Configuration" = "Конфигурация по умолчанию";
-
 "Navigation" = "Навигация";
 
 "Back" = "Назад";
@@ -23,6 +21,7 @@
 "Feed" = "Лента";
 "Info" = "Инфо";
 "To see" = "Посмотреть";
+"Updates" = "Обновления";
 
 "No data available!" = "Нет данных!";
 "Error:" = "Ошибка:";
@@ -75,3 +74,8 @@
 "Left" = "Левый";
 "Right" = "Правый";
 "Pressed the button" = "Нажал на кнопку";
+"Access to notifications not granted" = "Доступ к уведомлениям не предоставлен";
+"Error when adding a notification" = "Ошибка при добавлении уведомления";
+"Failed to log in using biometrics" = "Не удалось войти в систему с использованием биометрических данных";
+"Biometric authorization error" = "Ошибка биометрической авторизации";
+"Check out the latest updates" = "Посмотрите последние обновления";

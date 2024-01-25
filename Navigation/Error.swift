@@ -8,6 +8,7 @@ enum LoginError: Error {
     case suchUserAlreadyExists
     case authorized
     case successful
+    case biometricBadAuthorization
 }
 
 enum mediaError: Error {
