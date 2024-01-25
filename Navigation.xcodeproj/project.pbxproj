@@ -40,6 +40,8 @@
 		5921E45F2AE824FD00F63A98 /* VoiceRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5921E45E2AE824FD00F63A98 /* VoiceRecorderViewController.swift */; };
 		592BA9C02B248A1E0075878C /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592BA9BF2B248A1E0075878C /* CoreDataService.swift */; };
 		592D5AC62B52F52A00B9029D /* ExtensionUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592D5AC52B52F52A00B9029D /* ExtensionUIColor.swift */; };
+		592D5AC82B5A9A4200B9029D /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592D5AC72B5A9A4200B9029D /* LocalNotificationsService.swift */; };
+		592D5ACA2B5BE72700B9029D /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592D5AC92B5BE72700B9029D /* LocalAuthorizationService.swift */; };
 		593F3F982ABB7E7C0014FA45 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F3F972ABB7E7C0014FA45 /* CustomButton.swift */; };
 		594006272ABE0FE30004C717 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594006262ABE0FE30004C717 /* FeedViewModel.swift */; };
 		5946928A2AFFA82400870EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594692892AFFA82400870EEC /* AppDelegate.swift */; };
@@ -169,6 +171,8 @@
 		5921E45E2AE824FD00F63A98 /* VoiceRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorderViewController.swift; sourceTree = "<group>"; };
 		592BA9BF2B248A1E0075878C /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		592D5AC52B52F52A00B9029D /* ExtensionUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIColor.swift; sourceTree = "<group>"; };
+		592D5AC72B5A9A4200B9029D /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
+		592D5AC92B5BE72700B9029D /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		593F3F972ABB7E7C0014FA45 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		594006262ABE0FE30004C717 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		594692872AFFA82400870EEC /* FileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,10 +324,9 @@
 				59701E9E2AA72862006B85C4 /* LoginAndPasswordService */,
 				59746C202B2B758E0081BEB9 /* Favorite */,
 				59B3D7192AD31BCA003A6C79 /* Coordinators */,
+				592D5AC72B5A9A4200B9029D /* LocalNotificationsService.swift */,
+				592D5AC92B5BE72700B9029D /* LocalAuthorizationService.swift */,
 				59B3D7222AD31C11003A6C79 /* Factory.swift */,
-				591743AE2A545A1E002D6907 /* PostViewController.swift */,
-				591743B82A5590CC002D6907 /* InfoViewController.swift */,
-				597795E12AF58C5900F8739C /* InfoTableViewCell.swift */,
 				5946F0C92A7A484900D81BC8 /* Photos.swift */,
 				5921E4422AE672A200F63A98 /* Error.swift */,
 				593F3F972ABB7E7C0014FA45 /* CustomButton.swift */,
@@ -457,6 +460,9 @@
 				594006262ABE0FE30004C717 /* FeedViewModel.swift */,
 				5957B0032AD91BDE001A2F11 /* SecretWord.swift */,
 				598FDDD82B4185D000465633 /* MapViewController.swift */,
+				591743AE2A545A1E002D6907 /* PostViewController.swift */,
+				591743B82A5590CC002D6907 /* InfoViewController.swift */,
+				597795E12AF58C5900F8739C /* InfoTableViewCell.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -741,6 +747,7 @@
 				5921E4522AE685D600F63A98 /* MediaModel.swift in Sources */,
 				59EA50F42B1BB44500B20D6C /* FavoriteViewController.swift in Sources */,
 				59701EA22AA72D50006B85C4 /* LoginInspector.swift in Sources */,
+				592D5AC82B5A9A4200B9029D /* LocalNotificationsService.swift in Sources */,
 				5921E4432AE672A200F63A98 /* Error.swift in Sources */,
 				5946F0CA2A7A484900D81BC8 /* Photos.swift in Sources */,
 				591743AD2A545A16002D6907 /* FeedViewController.swift in Sources */,
@@ -765,6 +772,7 @@
 				5946F0C82A7A368D00D81BC8 /* PhotosCollectionViewCell.swift in Sources */,
 				5946F0C62A7A363900D81BC8 /* PhotosViewController.swift in Sources */,
 				59B3D7202AD31BEA003A6C79 /* FeedCoordinator.swift in Sources */,
+				592D5ACA2B5BE72700B9029D /* LocalAuthorizationService.swift in Sources */,
 				59B3D71F2AD31BEA003A6C79 /* Coordinator.swift in Sources */,
 				5946F0BC2A76437800D81BC8 /* PostTableViewCell.swift in Sources */,
 				594006272ABE0FE30004C717 /* FeedViewModel.swift in Sources */,
@@ -1005,6 +1013,7 @@
 				DEVELOPMENT_TEAM = W5SCR2QZXP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please, give permission for Face ID";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This feature need for work with Location in this App";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1034,6 +1043,7 @@
 				DEVELOPMENT_TEAM = W5SCR2QZXP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please, give permission for Face ID";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This feature need for work with Location in this App";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

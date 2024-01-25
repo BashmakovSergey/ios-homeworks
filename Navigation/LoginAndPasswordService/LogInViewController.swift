@@ -4,6 +4,7 @@ final class LogInViewController: UIViewController {
     
     var loginDelegate: LoginViewControllerDelegate?
     let coordinator: ProfileCoordinator
+    let localAuthorizationService = LocalAuthorizationService.shared
 
     private lazy var vkLogo: UIImageView = {
         let imageView = UIImageView()
@@ -96,6 +97,22 @@ final class LogInViewController: UIViewController {
         return button
     }()
     
+    private lazy var loginFaceIDButton: CustomButton = {
+        let autorizationType: String = switch localAuthorizationService.availableBiometricType {
+        case .none:
+            "none"
+        case .touchID:
+            "touchID"
+        case .faceID:
+            "faceID"
+        }
+        let button = CustomButton(vkTitleText: autorizationType, titleColor: .white, backgroundColor: .systemBlue, tapAction: logInBiometricsButtonPressed)
+        if button.titleLabel?.text == "none" {
+            button.isHidden = true
+        }
+        return button
+    }()
+    
     init(coordinator: ProfileCoordinator) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
@@ -129,7 +146,7 @@ final class LogInViewController: UIViewController {
     private func setupUI(){
         view.addSubview(loginScrollView)
         loginScrollView.addSubview(contentView)
-        contentView.addSubviews(vkLogo, loginStackView, loginButton, signUpButton)
+        contentView.addSubviews(vkLogo, loginStackView, loginButton, signUpButton, loginFaceIDButton)
         loginStackView.addArrangedSubview(loginField)
         loginStackView.addArrangedSubview(passwordField)
         convenientNotification()
@@ -178,6 +195,10 @@ final class LogInViewController: UIViewController {
             signUpButton.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
             signUpButton.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
             
+            loginFaceIDButton.topAnchor.constraint(equalTo: signUpButton.bottomAnchor, constant: 16),
+            loginFaceIDButton.heightAnchor.constraint(equalToConstant: 50),
+            loginFaceIDButton.leadingAnchor.constraint(equalTo: signUpButton.leadingAnchor),
+            loginFaceIDButton.trailingAnchor.constraint(equalTo: signUpButton.trailingAnchor),
         ])
     }
     
@@ -198,6 +219,8 @@ final class LogInViewController: UIViewController {
             errorMassage = "A new user has been successfully registered".localized + " \(loginField.text ?? "")"
             case .successful:
             errorMassage = "Successful login".localized
+            case .biometricBadAuthorization:
+            errorMassage = "Failed to log in using biometrics".localized
         }
         let alertController = UIAlertController(title: "Warning".localized, message: errorMassage, preferredStyle: .alert)
         let actionAlert = UIAlertAction(title: "ОК", style: .default, handler: nil)
@@ -223,6 +246,20 @@ final class LogInViewController: UIViewController {
                 loginErrorNotification(caseOf: .authorized)
             } catch{
                 loginErrorNotification(caseOf: .suchUserAlreadyExists)
+            }
+        }
+    }
+    
+    @objc private func logInBiometricsButtonPressed() {
+        localAuthorizationService.authorizeIfPossible { result in
+            DispatchQueue.main.async { [self] in
+                switch result {
+                case .success(_):
+                    coordinator.presentProfile(navigationController: navigationController, user: CurrentUserService().authorization())
+                case .failure(let error):
+                    print("Biometric authorization error".localized + ": \(error.localizedDescription)")
+                    loginErrorNotification(caseOf: .biometricBadAuthorization)
+                }
             }
         }
     }

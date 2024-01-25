@@ -15,7 +15,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NetworkService.request(url: url)
         
         window.rootViewController = mainCoordinator.start()
-        
         window.makeKeyAndVisible()
         self.window = window
     }
