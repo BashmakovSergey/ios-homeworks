@@ -111,7 +111,7 @@ final class PostTableViewCell: UITableViewCell {
     func update(model: Post) {
         postAuthor.text = model.author
         postDescription.text = model.description
-        postImage.image = UIImage(named: model.image)
+        postImage.image = model.image
         postLikes.text = String.localizedStringWithFormat("Likes".localized, model.likes)
         viewCounter = model.views
         postViews.text = String.localizedStringWithFormat("Views".localized, model.views)
