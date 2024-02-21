@@ -33,7 +33,7 @@ final class FavoriteService{
             let newItem = FavoritesPostData(context: coreDataService.backgroundContext)
             newItem.author = post.author
             newItem.descriptions = post.description
-            newItem.image = post.image
+            newItem.image = post.imageSting
             newItem.favorive = true
             if let rowIndex = postExamples.firstIndex(where: {$0.description == newItem.descriptions}) {
                 postExamples[rowIndex].favorite = true
