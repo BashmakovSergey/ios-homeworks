@@ -6,7 +6,7 @@ final class FavoriteService{
   
     private let coreDataService = CoreDataService.shared
 
-    private (set) var favoriteItems = [FavoritesPostData]()
+    private(set) var favoriteItems = [FavoritesPostData]()
 
     func fetchItems(completion: @escaping ([FavoritesPostData]) -> Void) {
         coreDataService.backgroundContext.perform { [weak self] in
